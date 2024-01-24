@@ -3,17 +3,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to CGAndGameDocs's documentation!
+关于文档
 =========================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   _markdowns/test.md
 
 
-Indices and tables
+
+文档目录
 ==================
 
 * :ref:`genindex`
