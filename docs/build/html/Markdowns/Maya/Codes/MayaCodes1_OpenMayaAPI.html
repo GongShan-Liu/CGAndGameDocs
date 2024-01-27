@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>001-Maya API 概念整理 &mdash; CGAndGameDocs 0.1.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=d786bb5c"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="测试2" href="MayaCodes2_test.html" />
+    <link rel="prev" title="代码脚本" href="../Papes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CGAndGameDocs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../Papes/Maya.html">Maya</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../Papes.html">代码脚本</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">001-Maya API 概念整理</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dgdag">1. DG、DAG概念整理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dg-dag">2. DG/DAG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">3. DG/DAG节点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">参考</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="MayaCodes2_test.html">测试2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CGAndGameDocs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../Papes/Maya.html">Maya</a></li>
+          <li class="breadcrumb-item"><a href="../Papes.html">代码脚本</a></li>
+      <li class="breadcrumb-item active">001-Maya API 概念整理</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/Markdowns/Maya/Codes/MayaCodes1_OpenMayaAPI.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="maya-api">
+<h1>001-Maya API 概念整理<a class="headerlink" href="#maya-api" title="Link to this heading"></a></h1>
+<section id="dgdag">
+<h2>1. DG、DAG概念整理<a class="headerlink" href="#dgdag" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>DG：Dependency Graph  依赖图可循环，简单理解DG表示连接关系</p></li>
+<li><p>DAG：directed acyclic graph  有向无循环图，简单理解DAG表示父子（或层级）关系</p></li>
+</ul>
+<p><strong>首先需要明确的是，DG/DAG 与 DG/DAG节点  是两个概念。DG/DAG是graph（图形），准确的说是对于节点结构的表现方式，DG/DAG节点则是节点。
+DG和DAG的概念就是描述Maya的节点关系，DG是连接关系，DAG是父子关系；基本上可以认为maya当中所有的node都是DG节点，包括DAG节点</strong></p>
+</section>
+<section id="dg-dag">
+<h2>2. DG/DAG<a class="headerlink" href="#dg-dag" title="Link to this heading"></a></h2>
+<p>Windows -&gt; GeneralEditors 可以打开Hypergraph
+其中hierarchy是以DAG的结构展现的
+connections（连接）是以DG的结构展现的</p>
+<p>进入其中任意一个，点击图标也可以切换</p>
+<ul class="simple">
+<li><p>DAG/Hypergraph hierarchy/directed acyclic graph
+在DAG模式中，场景中的所有DAG节点（关于DAG节点会稍后解释）都会全部以层级的方式显示出来</p></li>
+<li><p>DG/Hypergraph connections/Dependency Graph
+DG模式中，只有当前选中的DG节点且与之存在connection关系的节点会被显示出来</p></li>
+<li><p>Hierarchy（层级）/connection（连接）
+Hierarchy与connection（directed acyclic graph/Dependency Graph）区别在于direction（方向）和cyclic（循环），也就是两个node之间数据传输的方向和是否会是产生循环
+hierarchy是很简单的父子结构，单纯的单向数据传输（继承）关系，用于tranform；connnection则复杂且自由的多
+需要注意的是，hierarchy的关系在connection并没有被表现出来（没有线连接）
+所以connnection只展现了hierarchy以外iade关系。Hierarchy关系需要进入hierarchy graph</p></li>
+</ul>
+</section>
+<section id="id1">
+<h2>3. DG/DAG节点<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>DG节点：基本上可以认为maya当中所有的node都是DG节点，包括DAG节点
+DAG节点：只有两种DAG node，transform 和shape；shape永远是transform的child；一组transform+shape组成一组DAG 结构
+官方对于DAG的描述：
+从本质上说，DAG是instance（实例）从几何体中构造出来的过程的分解
+In essence, the DAG is a breakdown of how an instance of an object is constructed from a piece of geometry</p></li>
+<li><p>理解一下这个创造过程</p>
+<ol class="simple">
+<li><p>cube来自cmds.polyCube create</p></li>
+<li><p>create之后产生了一个polyCube的instance ：polyCube6</p></li>
+<li><p>由polyCube6产生了shape：pCubeShape6</p></li>
+<li><p>pCube6则是shape的transform</p></li>
+</ol>
+</li>
+<li><p>Outliner当中 的相关显示选项；Outliner当中默认是只显示DAG而不显示其他的DG，并且不显示shapes的；需要的时候可以打开</p></li>
+</ul>
+<p>补充:</p>
+<ul class="simple">
+<li><p>maya里面object是由tranform+shape 组成的
+sphere0=cmds.polySphere()[0]
+cmds.polyShpere 所return的不是object name的string，而是一个list，
+list里面有2个string，一个是transform name，一个是shape name</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">maya.cmds</span> <span class="k">as</span> <span class="nn">cmds</span>
+<span class="n">sphere</span><span class="o">=</span><span class="n">cmds</span><span class="o">.</span><span class="n">polySphere</span><span class="p">()</span> <span class="c1">#获得包含2个tring的list</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span>
+
+<span class="n">sphere0</span><span class="o">=</span><span class="n">cmds</span><span class="o">.</span><span class="n">polySphere</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="c1">#获得return的list当中的第一个string</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sphere0</span><span class="p">)</span>
+<span class="n">sphere1</span><span class="o">=</span><span class="n">cmds</span><span class="o">.</span><span class="n">polySphere</span><span class="p">()[</span><span class="mi">1</span><span class="p">]]</span><span class="c1">#获得return的list当中的第二个string</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sphere1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>参考<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/360546258">Maya 数据结构:DG /DAG/Shape/Transform概念整理</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../Papes.html" class="btn btn-neutral float-left" title="代码脚本" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="MayaCodes2_test.html" class="btn btn-neutral float-right" title="测试2" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024, yao。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
