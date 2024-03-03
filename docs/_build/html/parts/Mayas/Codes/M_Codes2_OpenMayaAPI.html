@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>002-OpenMaya基础知识 &#8212; CGAndGameDocs</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'parts/Mayas/Codes/M_Codes2_OpenMayaAPI';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="004-DG节点" href="M_Codes4_OpenMayaAPI.html" />
+    <link rel="prev" title="003-简单的命令插件" href="M_Codes3_OpenMayaAPI.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="CGAndGameDocs - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="CGAndGameDocs - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Maya</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Codes.html">代码脚本</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="M_Codes1_OpenMayaAPI.html">001-Maya API 概念整理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="M_Codes3_OpenMayaAPI.html">003-简单的命令插件</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">002-OpenMaya基础知识</a></li>
+<li class="toctree-l2"><a class="reference internal" href="M_Codes4_OpenMayaAPI.html">004-DG节点</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs/edit/master/docs/parts/Mayas/Codes/M_Codes2_OpenMayaAPI.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs/issues/new?title=Issue%20on%20page%20%2Fparts/Mayas/Codes/M_Codes2_OpenMayaAPI.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/parts/Mayas/Codes/M_Codes2_OpenMayaAPI.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>002-OpenMaya基础知识</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#openmaya-api">1. OpenMaya API名称约定</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2. OpenMaya的基本操作</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. OpenMaya的迭代器</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#openmaya-manipulators">4.  OpenMaya操纵器（Manipulators）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">参考</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="openmaya">
+<h1>002-OpenMaya基础知识<a class="headerlink" href="#openmaya" title="Link to this heading">#</a></h1>
+<section id="openmaya-api">
+<h2>1. OpenMaya API名称约定<a class="headerlink" href="#openmaya-api" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>MFN - 任何具有此前缀的类都是用于对特定类型的MObject进行操作的函数集</p></li>
+<li><p>MIt - 这些类是迭代器和在MObject上像操作函数集一样</p></li>
+<li><p>MPx - 具有此前缀的类都是代理，API 类旨在派生并创建自己的对象类型</p></li>
+<li><p>M类 - 这些类中的大多数都是封装类，尽管还有其他类</p></li>
+</ul>
+</section>
+<section id="id1">
+<h2>2. OpenMaya的基本操作<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">maya.OpenMaya</span> <span class="k">as</span> <span class="nn">om</span>
+<span class="kn">import</span> <span class="nn">maya.cmds</span> <span class="k">as</span> <span class="nn">cmds</span>
+
+<span class="c1"># 获取所选的物体</span>
+<span class="n">m_sel</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MSelectionList</span><span class="p">()</span>
+<span class="n">om</span><span class="o">.</span><span class="n">MGlobal</span><span class="o">.</span><span class="n">getActiveSelectionList</span><span class="p">(</span><span class="n">m_sel</span><span class="p">)</span>
+<span class="n">sel_iter</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MItSelectionList</span><span class="p">(</span><span class="n">m_sel</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">sel_iter</span><span class="o">.</span><span class="n">isDone</span><span class="p">():</span>
+    <span class="n">dag</span> <span class="o">=</span> <span class="n">sel_iter</span><span class="o">.</span><span class="n">getDagPath</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dag</span><span class="p">)</span> <span class="c1"># 打印transform的名称</span>
+    <span class="n">sel_iter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+
+<span class="c1"># 列出所选择的物体</span>
+<span class="n">msel</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MSelectionList</span><span class="p">()</span>
+<span class="n">mglb</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MGlobal</span><span class="p">()</span>
+<span class="n">mglb</span><span class="o">.</span><span class="n">getActiveSelectionList</span><span class="p">(</span><span class="n">msel</span><span class="p">)</span>  <span class="c1"># 把选择的物体名称添加到SelectionList集合</span>
+
+<span class="n">mdagpath</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MDagPath</span><span class="p">()</span>
+<span class="n">mobj</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MObject</span><span class="p">()</span>
+<span class="n">mfndag</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MFnDagNode</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">msel</span><span class="o">.</span><span class="n">length</span><span class="p">()):</span>
+    <span class="n">msel</span><span class="o">.</span><span class="n">getDagPath</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">mdagpath</span><span class="p">)</span>
+    <span class="n">msel</span><span class="o">.</span><span class="n">getDependNode</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">mobj</span><span class="p">)</span>
+    <span class="n">mfndag</span><span class="o">.</span><span class="n">setObject</span><span class="p">(</span><span class="n">mdagpath</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="n">mobj</span><span class="o">.</span><span class="n">apiTypeStr</span><span class="p">())</span> <span class="c1"># 打印物体的类型名称</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">mdagpath</span><span class="o">.</span><span class="n">fullPathName</span><span class="p">())</span>   <span class="c1"># 打印物体的长名称</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">om</span><span class="o">.</span><span class="n">MFnDependencyNode</span><span class="p">(</span><span class="n">mobj</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">())</span> <span class="c1"># 打印物体的短名称</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">mfndag</span><span class="o">.</span><span class="n">name</span><span class="p">())</span> <span class="c1"># 打印物体的短名称</span>
+ 
+<span class="c1"># 选择物体 如果已经存在选择物体就会加叠加选择</span>
+<span class="n">mglb</span><span class="o">.</span><span class="n">selectByName</span><span class="p">(</span><span class="s2">&quot;pSphereShape1&quot;</span><span class="p">)</span> 
+<span class="n">mglb</span><span class="o">.</span><span class="n">selectByName</span><span class="p">(</span><span class="s2">&quot;*Sphere*&quot;</span><span class="p">)</span> <span class="c1"># 选择名称中带有 Sphere 的所有内容</span>
+
+
+<span class="c1"># 先在场景创建钟 polyPlane模型</span>
+
+<span class="c1"># 创建SelectionList  SelectionList是一个MObject的集</span>
+<span class="n">mSel</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MSelectionList</span><span class="p">()</span>
+<span class="n">mSel</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">cmds</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="n">sl</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># 把选择的物体名称添加到SelectionList集合</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mSel</span><span class="o">.</span><span class="n">length</span><span class="p">())</span> <span class="c1"># 打印SelectionList集合的大小</span>
+
+<span class="c1"># 创建MObject 和 MDagPath 对象</span>
+<span class="n">mObj</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MObject</span><span class="p">()</span>
+<span class="n">mDagPath</span> <span class="o">=</span><span class="n">om</span><span class="o">.</span><span class="n">MDagPath</span><span class="p">()</span>
+
+<span class="c1"># 获取SelectionList内的第一个对象的 MObject 和 MDagPath</span>
+<span class="n">mSel</span><span class="o">.</span><span class="n">getDependNode</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">mObj</span><span class="p">)</span> 
+<span class="n">mSel</span><span class="o">.</span><span class="n">getDagPath</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">mDagPath</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mDagPath</span><span class="o">.</span><span class="n">fullPathName</span><span class="p">())</span> <span class="c1"># 打印 Dag节点的长名称</span>
+
+<span class="c1"># 获取shape的MFnMesh对象</span>
+<span class="n">mfnMesh</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MFnMesh</span><span class="p">(</span><span class="n">mDagPath</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mfnMesh</span><span class="o">.</span><span class="n">fullPathName</span><span class="p">())</span> <span class="c1"># 打印shape节点的长名称</span>
+
+<span class="c1"># 获取到dependency节点 (类似于DAG节点的Transform节点)</span>
+<span class="n">mFnDependNode</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MFnDependencyNode</span><span class="p">(</span><span class="n">mObj</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mFnDependNode</span><span class="o">.</span><span class="n">name</span><span class="p">())</span> <span class="c1"># 打印节点的（短）名称</span>
+
+<span class="c1"># 获取shape节点的存在连接的属性名称 （在OpenMaya中称为Plug 节点插头）</span>
+<span class="n">mPlugArray</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MPlugArray</span><span class="p">()</span> <span class="c1"># 插头的数组</span>
+<span class="n">mfnMesh</span><span class="o">.</span><span class="n">getConnections</span><span class="p">(</span><span class="n">mPlugArray</span><span class="p">)</span> <span class="c1"># 获取存在连接的插头</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mPlugArray</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>  <span class="c1"># 打印插头的名称</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mPlugArray</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
+
+<span class="c1"># 获取shape节点属性连接的对象节点属性 （实则是列出属性pPlaneShape1.inMesh的连接对象）</span>
+<span class="n">mPlugArray2</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MPlugArray</span><span class="p">()</span>
+<span class="n">mPlugArray</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">connectedTo</span><span class="p">(</span><span class="n">mPlugArray2</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mPlugArray2</span><span class="o">.</span><span class="n">length</span><span class="p">())</span> <span class="c1"># 打印连接对象的插头集合的大小</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mPlugArray2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">())</span> <span class="c1"># 打印连接对象的插头名称</span>
+
+<span class="c1"># 获取连接对象的MObject 和 dependency节点</span>
+<span class="n">mObj2</span> <span class="o">=</span> <span class="n">mPlugArray2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">node</span><span class="p">()</span>
+<span class="n">mFnDependNode2</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MFnDependencyNode</span><span class="p">(</span><span class="n">mObj2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mFnDependNode2</span><span class="o">.</span><span class="n">name</span><span class="p">())</span> <span class="c1"># 打印节点的名称</span>
+
+<span class="c1"># 获取节点的属性的MPlug对象</span>
+<span class="n">mPlugWidth</span> <span class="o">=</span> <span class="n">mFnDependNode2</span><span class="o">.</span><span class="n">findPlug</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">)</span>
+<span class="n">mPlugHeight</span> <span class="o">=</span> <span class="n">mFnDependNode2</span><span class="o">.</span><span class="n">findPlug</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">)</span>
+
+<span class="c1"># 打印获取到的节点属性值</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mPlugWidth</span><span class="o">.</span><span class="n">asInt</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mPlugHeight</span><span class="o">.</span><span class="n">asInt</span><span class="p">())</span>
+
+<span class="c1"># 设置节点属性的值</span>
+<span class="n">mPlugWidth</span><span class="o">.</span><span class="n">setInt</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">mPlugHeight</span><span class="o">.</span><span class="n">setInt</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>3. OpenMaya的迭代器<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>  <strong>常用的迭代器：</strong></p>
+<p>   <strong>MItDag</strong>：作用于迭代DAG节点的层级结构</p>
+<p>   <strong>MItDependencyGraph</strong>：作用于迭代DG节点的链接</p>
+<p>   <strong>MItMeshEdge</strong>：作用于迭代mesh节点的边</p>
+<p>   <strong>MItMeshVertex</strong>：作用于迭代mesh节点的顶点</p>
+<p>   <strong>MItMeshPolygon</strong>：作用于迭代mesh节点的面</p>
+<p>   <strong>MItSurfaceCV</strong>：作用于迭代surface的CV点</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">maya.OpenMaya</span>  <span class="k">as</span> <span class="nn">om</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">DAG迭代器的两种搜索模式：depth first search （深度优先） 和 breadth first search （广度优先）</span>
+
+<span class="sd">例如：</span>
+<span class="sd">    DAG结构图</span>
+<span class="sd">    </span>
+<span class="sd">                A</span>
+<span class="sd">                |</span>
+<span class="sd">                B</span>
+<span class="sd">              /   \</span>
+<span class="sd">             C     D</span>
+<span class="sd">            / \   / \</span>
+<span class="sd">           E   F G   H</span>
+
+<span class="sd">        两种搜索的顺序</span>
+<span class="sd">                深度优先：A-&gt;B-&gt;C-&gt;E-&gt;F-&gt;D-&gt;G-&gt;H</span>
+<span class="sd">                广度优先：A-&gt;B-&gt;C-&gt;D-&gt;E-&gt;F-&gt;G-&gt;H</span>
+<span class="sd">   </span>
+<span class="sd">   </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># 针对场景中所有DAG节点的迭代 打印一些信息</span>
+<span class="n">dagIterator</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MItDag</span><span class="p">(</span><span class="n">om</span><span class="o">.</span><span class="n">MItDag</span><span class="o">.</span><span class="n">kDepthFirst</span><span class="p">,</span><span class="n">om</span><span class="o">.</span><span class="n">MFn</span><span class="o">.</span><span class="n">kInvalid</span><span class="p">)</span>
+<span class="n">dagNodeFn</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">MFnDagNode</span><span class="p">()</span>
+
+<span class="k">while</span><span class="p">(</span><span class="ow">not</span> <span class="n">dagIterator</span><span class="o">.</span><span class="n">isDone</span><span class="p">()):</span>
+    <span class="n">cObj</span> <span class="o">=</span> <span class="n">dagIterator</span><span class="o">.</span><span class="n">currentItem</span><span class="p">()</span> <span class="c1"># 获取当前的mobject</span>
+    <span class="n">depth</span> <span class="o">=</span> <span class="n">dagIterator</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span> <span class="c1"># 获取层级结构的深度</span>
+    <span class="n">dagNodeFn</span><span class="o">.</span><span class="n">setObject</span><span class="p">(</span><span class="n">cObj</span><span class="p">)</span>
+    
+    <span class="n">name</span> <span class="o">=</span> <span class="n">dagNodeFn</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="c1"># 获取DAG节点的名称</span>
+    <span class="n">objType</span> <span class="o">=</span> <span class="n">cObj</span><span class="o">.</span><span class="n">apiTypeStr</span><span class="p">()</span> <span class="c1"># 获取DAG节点的类型</span>
+    <span class="n">fullPathName</span> <span class="o">=</span> <span class="n">dagNodeFn</span><span class="o">.</span><span class="n">fullPathName</span><span class="p">()</span> <span class="c1"># 获取DAG节点的长名称</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----&gt;&quot;</span> <span class="o">*</span> <span class="n">depth</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; : &quot;</span> <span class="o">+</span> <span class="n">objType</span><span class="p">)</span>
+    <span class="c1">#print(fullPathName)</span>
+    <span class="n">dagIterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+
+
+<span class="c1"># 常用迭代器</span>
+    <span class="c1"># MItDag: 用以迭代dag节点的层级</span>
+    <span class="c1"># MItDependencyGraph: 用以迭代dg节点的连接</span>
+    <span class="c1"># MItMeshEdge: 用以迭代mesh的边</span>
+    <span class="c1"># MItMeshVertex: 用以迭代mesh的顶点</span>
+    <span class="c1"># MItMeshPolygon: 用以迭代mesh的面</span>
+    <span class="c1"># MItSurfaceCV: 用以迭代曲面的cv</span>
+</pre></div>
+</div>
+</section>
+<section id="openmaya-manipulators">
+<h2>4.  OpenMaya操纵器（Manipulators）<a class="headerlink" href="#openmaya-manipulators" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>操纵器是一个使用 3D 图形元素绘制自身的节点，它响应用户事件。操纵器
+用户事件转换为用于修改场景中其他节点的属性值的值。</p></li>
+<li><p>基础操纵器的所有功能集均来自: <strong>MFnManip3D类</strong></p></li>
+</ul>
+<p> </p>
+<ul>
+<li><p><strong>MFnFreePointTriadManip类（点操纵器）</strong>: 提供了一个可以移动到任何地方的点。它具有用于受约束的 x、y 和 z 移动的轴，并遵循网格捕捉、点捕捉和曲线捕捉。</p>
+<p> <img alt="" src="../../../_images/c2_output_1.png" /></p>
+</li>
+<li><p><strong>MFnDirectionManip类（方向操纵器）</strong>: 允许指定从起点到操纵器位置的向量定义的方向。它使用 FreePointTriadManip 来指定向量相对于给定起点的终点。该操纵器生成从起点到终点的矢量。</p>
+<p> <img alt="" src="../../../_images/c2_output_2.png" /></p>
+</li>
+<li><p><strong>MFnDistanceManip类（距离操纵器）</strong>: 许操纵被约束为沿线移动的点。计算从线的起点到操作点的距离值。该操纵器生成单个浮点值。缩放因子可用于确定操纵器在绘制时出现的时间。</p>
+<p> <img alt="" src="../../../_images/c2_output_3.png" /></p>
+</li>
+<li><p><strong>MFnPointOnCurveManip类（点在曲线的操纵器）</strong>: 允许操纵被约束为沿曲线移动的点并指定u曲线参数值。此操纵器生成与曲线参数对应的单个浮点值。</p></li>
+</ul>
+<p> </p>
+<ul>
+<li><p><strong>MFnPointOnSurfaceManip类（点在曲面的操纵器）</strong>: 许操纵被约束为沿曲面移动的点并指定(u, v)曲面参数值。该操纵器生成两个与表面 (u, v) 参数相对应的浮点值。</p>
+<p> <img alt="" src="../../../_images/c2_output_4.png" /></p>
+</li>
+<li><p><strong>MFnDiscManip类（光盘操纵器）</strong>: 允许旋转圆盘以指定围绕轴的旋转。该操纵器生成与旋转相对应的单个浮点值。</p>
+<p> <img alt="" src="../../../_images/c2_output_5.png" /></p>
+</li>
+<li><p><strong>MFnCircleSweepManip类（圆圈扫描）</strong>: 允许操纵一个被约束为绕圆移动的点并指定扫角。该操纵器生成与扫描角相对应的单个浮点值。类似于 MFnDiscManip类，但它提供了更多用于指定旋转角度的选项</p>
+<p> <img alt="" src="../../../_images/c2_output_6.png" /></p>
+</li>
+<li><p><strong>MFnToggleManip类（切换操纵器）</strong>: 允许在两种模式或开/关状态之间切换。它被画成一个有或没有点的圆圈。当模式开启时，圆点被绘制在圆圈中，当模式关闭时，圆点被绘制而没有点。该操纵器生成一个布尔值，对应于模式是打开还是关闭。</p>
+<p> <img alt="" src="../../../_images/c2_output_7.png" /></p>
+</li>
+<li><p><strong>MFnStateManip类（状态操纵器）</strong>: 允许在多个状态之间切换。它被画成一个带有凹口的圆圈。每次单击圆圈都会增加状态的值。该操纵器生成一个与操纵器状态相对应的整数值。</p>
+<p> <img alt="" src="../../../_images/c2_output_8.png" /></p>
+</li>
+<li><p><strong>MFnCurveSegmentManip类（曲线分段）</strong>: 允许操纵曲线上的两个点来指定曲线段。该操纵器生成两个浮点值，分别对应曲线段的起点和终点参数。</p></li>
+</ul>
+<p> </p>
+<ul>
+<li><p><strong>MFnRotateManip类（旋转操纵器）</strong>: 对应于 Maya 中内置的旋转操纵器，它允许操纵 3d 旋转矢量。操纵器由三个约束轴旋转环、一个视图旋转环和一个不可见的轨迹球组成，可让球体中沿任意方向旋转。它支持内置旋转操纵器的三种旋转模式：对象空间、全局和万向。它允许在 x、y、z 和观察轴上进行约束旋转。操纵器生成的矢量是适合输入到旋转接口的欧拉旋转。</p>
+<p> <img alt="" src="../../../_images/c2_output_9.png" /></p>
+</li>
+<li><p><strong>MFnScaleManip类（缩放操纵器）</strong>: 对应于 Maya 中的内置缩放操纵器，它允许操纵相对的 x、y 和 z 缩放值。缩放操纵器提供了用于按比例缩放的中央手柄，以及用于在每个轴上进行非比例缩放的 x、y 和 z 轴手柄。操纵器生成适合输入到缩放接口的相对缩放矢量。</p>
+<p> <img alt="" src="../../../_images/c2_output_10.png" /></p>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h2>参考<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.bilibili.com/video/BV1pE411B7ns?p=1&amp;amp;vd_source=4655f6297e93c05206bd3f385bdc5342">C++ Maya Plug</a></p></li>
+<li><p><a class="reference external" href="https://www.bilibili.com/video/BV11K4y1e7zB/?p=1&amp;amp;vd_source=4655f6297e93c05206bd3f385bdc5342">maya_API入门详解（中英文字幕）</a></p></li>
+<li><p><a class="reference external" href="https://help.autodesk.com/view/MAYAUL/2018/CHS/?guid=__files_API_Naming_Conventions_htm">OpenMaya API名称约定</a></p></li>
+<li><p><a class="reference external" href="https://help.autodesk.com/view/MAYAUL/2018/CHS/?guid=__files_Selecting_with_the_API_htm">OpenMaya API选择</a></p></li>
+<li><p><a class="reference external" href="https://help.autodesk.com/view/MAYAUL/2018/CHS/?guid=__files_Manipulators_Base_manipulators_htm">OpenMaya操纵器</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./parts\Mayas\Codes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="M_Codes3_OpenMayaAPI.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">003-简单的命令插件</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="M_Codes4_OpenMayaAPI.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">004-DG节点</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#openmaya-api">1. OpenMaya API名称约定</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2. OpenMaya的基本操作</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. OpenMaya的迭代器</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#openmaya-manipulators">4.  OpenMaya操纵器（Manipulators）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">参考</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By yao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

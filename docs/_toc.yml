@@ -1,0 +1,14 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Maya
+    chapters:
+    - file: parts/Mayas/Codes
+      sections:
+      - file: parts/Mayas/Codes/M_Codes1_OpenMayaAPI
+      - file: parts/Mayas/Codes/M_Codes3_OpenMayaAPI
+      - file: parts/Mayas/Codes/M_Codes2_OpenMayaAPI
+      - file: parts/Mayas/Codes/M_Codes4_OpenMayaAPI
