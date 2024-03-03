@@ -1,0 +1,634 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>004-DG节点 &#8212; CGAndGameDocs</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'parts/Mayas/Codes/M_Codes4_OpenMayaAPI';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="002-OpenMaya基础知识" href="M_Codes2_OpenMayaAPI.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="CGAndGameDocs - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="CGAndGameDocs - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Maya</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Codes.html">代码脚本</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="M_Codes1_OpenMayaAPI.html">001-Maya API 概念整理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="M_Codes3_OpenMayaAPI.html">003-简单的命令插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="M_Codes2_OpenMayaAPI.html">002-OpenMaya基础知识</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">004-DG节点</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs/edit/master/docs/parts/Mayas/Codes/M_Codes4_OpenMayaAPI.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs/issues/new?title=Issue%20on%20page%20%2Fparts/Mayas/Codes/M_Codes4_OpenMayaAPI.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/parts/Mayas/Codes/M_Codes4_OpenMayaAPI.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>004-DG节点</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 脏传播</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. 推拉机制</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. 惰性评估</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4. 基础DG节点类</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">参考</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="dg">
+<h1>004-DG节点<a class="headerlink" href="#dg" title="Link to this heading">#</a></h1>
+<p><strong>Maya节点包含4个部分：属性、插头、数据块、数据句柄</strong></p>
+<p> </p>
+<p><strong>节点的属性和插头</strong></p>
+<ul class="simple">
+<li><p>节点的属性定义了节点与DG其余部分的数据接口。节点在评估过程中相互传递的唯一数据来自并通过此接口</p></li>
+<li><p>插头是包含给定属性数据的构造。属性的所有数据访问都是通过插头来完成的。属性本身仅定义属性的数据类型和名称。插头也是节点之间进行连接的端口。</p></li>
+<li><p>属性名称在整个节点层次结构中必须是唯一的，即在所有派生类和父类中，但可以在不相关的节点之间重用。</p></li>
+<li><p>属性可能具有分配给它们的默认值。如果其值尚未设置，这将是该属性上的插头将具有的值。任何类型化属性的默认值都等于它们接受的数据类型的默认值——数字数据默认为零，矩阵数据默认为单位矩阵等</p></li>
+</ul>
+<section id="id1">
+<h2>1. 脏传播<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>  当修改了节点的属性时，若影响到节点的输出，那么属性则标记为<strong>脏</strong>，而连接的下游节点都会被标记为<strong>脏</strong>，直到节点进行了重新计算后，属性才会被标记<strong>干净</strong></p>
+<p>  在以下情况下，节点会执行计算进行更新：</p>
+<p>    <strong>ViewPort</strong>：视图刷新</p>
+<p>    <strong>Attibute Editor</strong>：开启属性编辑器</p>
+<p>    <strong>Channel box</strong>：开启通道盒</p>
+<p>    <strong>Play animation</strong>：播放动画</p>
+<p>    <strong>getAttr</strong>：执行获取属性值的命令</p>
+<p>  当脏节点需要更新时，会沿着上游一直追寻脏节点，直到无法找到脏节点为止，则把每个脏节点进行计算，输出到下游，直至最终要更新的脏节点</p>
+</section>
+<section id="id2">
+<h2>2. 推拉机制<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>  推拉机制是节点属性脏传播和评估的方式；当属性被修改，那么标记为脏时，该机制则会把节点连接到的下游节点进行脏传播，
+该过程就是推送；当属性需要评估时，节点连接的上游则会从最上游节点开始把每个节点进行计算，该过程就是拉取，完成后标记干净</p>
+</section>
+<section id="id3">
+<h2>3. 惰性评估<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>  在属性评估过程中，只有要求更新的脏属性才会进行计算，并之后标记为干净，如果节点某些脏属性没有接收到更新的请求则不会进行评估，
+该过程被称为惰性评估</p>
+</section>
+<section id="id4">
+<h2>4. 基础DG节点类<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">MPxNode：所有DG节点的基类</span>
+
+<span class="sd">MPxLocatorNode：父类是一个DAG节点，此类用于定义在空间中具有位置</span>
+<span class="sd">                但没明确形状的实体并且不会被渲染</span>
+
+<span class="sd">MPxGeometryFilter：获取输入几何形状并对其进行变形</span>
+
+<span class="sd">MPxDeformerNode：处理每个顶点的权重列表</span>
+
+<span class="sd">MPxBlendShape：处理输入目标和权重</span>
+
+<span class="sd">MPxSkinCluster：处理每个顶点的蒙皮权重</span>
+
+<span class="sd">MPxIkSolverNode：IK解算器的类，用于根据一组目标和设置在连接上的约束来为刚体连接设置动画</span>
+
+<span class="sd">MPxFieldNode：可自定义动态场以影响场景中的其他几何体</span>
+
+<span class="sd">MPxEmitterNode：将粒子发射到Maya场景中的类</span>
+
+<span class="sd">MPxFluidEmitterNode：允许创建和操作表示流体发射器的DG节点。是Emitter节点功能集层次结构的顶层。</span>
+<span class="sd">允许对所有类型的流体Emitter共有的属性进行操作</span>
+
+<span class="sd">MPxSpringNode：在两个具有质量的端点之间相互作用的力。Maya定义了一个默认的弹簧力，它遵循传统的弹簧数学模型。</span>
+<span class="sd">可以通过从MPxSpringNode. 预定义属性提供所有标准弹簧常数以及端点的位置和质量。节点的工作是通过 applySpringLaw()方法而不是compute()方法。</span>
+
+<span class="sd">MPxObjectSet：用于在Maya中实现新类型的集合，这些集合可以具有可选择或可操作的组件，并且行为方式与Maya中包含的objectSet节点类似。</span>
+
+<span class="sd">MPxHwShaderNode：允许创建用户定义的hwShaders。hwShader是一个节点，它采用任意数量的输入几何图形，</span>
+<span class="sd">对它们进行变形并将输出放置到输出几何图形属性中。另请参阅编写硬件着色节点。</span>
+
+<span class="sd">MPxTransform：允许创建用户定义的变换节点。用户定义的变换节点可以引入新的变换类型或改变变换顺序。</span>
+<span class="sd">它们被设计为标准 Maya 变换节点的扩展，并包含所有正常变换属性</span>
+
+
+<span class="sd">MPxImagePlane：允许创建新类型的图像平面节点。可以使用此类修改图像平面中的非标准图像数据或对此节点的行为更改。</span>
+
+<span class="sd">MPxParticleAttributeMapperNode：是所有用户定义的每粒子属性映射节点的父类。此类允许插件定义新的“arrayMapper”节点的行为，</span>
+<span class="sd">粒子通常使用该节点为纹理节点中的粒子着色。</span>
+
+<span class="sd">MPxConstraint：是所有用户定义的约束节点的父类。这个类与MPxConstraintCommand提供默认Maya约束功能</span>
+
+<span class="sd">MPxManipulatorNode：是操纵器的基类一种节点，它在 Maya 视口中绘制自身的可视化表示，并通过视口内的直接交互接受来自用户的输入。</span>
+<span class="sd">Maya 提供了几种内置类型的操纵器，但如果要创建新类型的操纵器，可以创建一个新类，</span>
+<span class="sd">该类派生自MPxManipulatorNode并编写确定操纵器如何绘制以及它如何对鼠标事件作出反应的虚拟方法。</span>
+
+<span class="sd">MPxManipContainer：类为操纵器提供一个基本接口，该接口解释由一种或多种基本类型的操纵器节点记录的输入，</span>
+<span class="sd">并通过更改其他连接节点上的属性来应用该输入。</span>
+
+<span class="sd">MPxSurfaceShape 和 MPxComponentShape</span>
+<span class="sd">创建一种新的形状图元，则需要创建一个派生自的新类MPxSurfaceShape或者MPxComponentShape，</span>
+<span class="sd">它将用于表示场景层次结构和依赖关系图中的几何体实例</span>
+
+<span class="sd">MPxAssembly：是场景组装节点的基类。</span>
+
+<span class="sd">MPxCameraSet：可自定义节点视为内置cameraSet节点</span>
+
+<span class="sd">MPxMotionPathNode：可自定义节点视为内置的motionPath节点</span>
+
+<span class="sd">MPxPolyTrg：自定义面三角剖分算法的节点的基类</span>
+
+
+<span class="sd">MPxThreadedDeviceNode：是在创建节点时启动辅助线程并使用辅助线程从设备获取数据的节点的基类</span>
+
+<span class="sd">MPxClientDeviceNode：专精MPxThreadedDeviceNode用于与充当客户端的网络设备交互，例如来自TCP socket的数据</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2>参考<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.bilibili.com/video/BV11K4y1e7zB/?p=1&amp;amp;vd_source=4655f6297e93c05206bd3f385bdc5342">maya_API入门详解（中英文字幕）</a></p></li>
+<li><p><a class="reference external" href="https://help.autodesk.com/view/MAYAUL/2018/CHS/?guid=__files_Dependency_graph_plugins_htm">maya DG插件</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./parts\Mayas\Codes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="M_Codes2_OpenMayaAPI.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">002-OpenMaya基础知识</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 脏传播</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. 推拉机制</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. 惰性评估</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4. 基础DG节点类</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">参考</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By yao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
