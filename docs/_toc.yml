@@ -6,9 +6,15 @@ root: intro
 parts:
   - caption: Maya
     chapters:
-    - file: parts/Mayas/Codes
+    - file: parts/mayas/code
       sections:
-      - file: parts/Mayas/Codes/M_Codes1_OpenMayaAPI
-      - file: parts/Mayas/Codes/M_Codes3_OpenMayaAPI
-      - file: parts/Mayas/Codes/M_Codes2_OpenMayaAPI
-      - file: parts/Mayas/Codes/M_Codes4_OpenMayaAPI
+      - file: parts/mayas/codes/M_Codes1_OpenMayaAPI
+      - file: parts/mayas/codes/M_Codes3_OpenMayaAPI
+      - file: parts/mayas/codes/M_Codes2_OpenMayaAPI
+      - file: parts/mayas/codes/M_Codes4_OpenMayaAPI
+  - caption: Unreal
+    chapters:
+    - file: parts/unreals/unreal
+  - caption: Unity
+    chapters:
+    - file: parts/unitys/unity
