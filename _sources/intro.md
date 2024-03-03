@@ -3,7 +3,7 @@
 ## 本文档是影视和游戏的相关技术的文档库
 
 - 作者: yao
-- 网址: [文档库](https://cgandgamedocs.readthedocs.io/en/latest/index.html)
+- 网址: [文档库](https://gongshan-liu.github.io/CGAndGameDocs/intro.html)
 - 问题留言: [Issues](https://github.com/GongShan-Liu/CGAndGameDocs/issues)
 
 ## 说明
