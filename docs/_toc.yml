@@ -12,6 +12,10 @@ parts:
       - file: parts/mayas/codes/M_Codes3_OpenMayaAPI
       - file: parts/mayas/codes/M_Codes2_OpenMayaAPI
       - file: parts/mayas/codes/M_Codes4_OpenMayaAPI
+    - file: parts/mayas/hair
+      sections:
+      - file: parts/mayas/hairs/M_hairs1_CreateXgen
+    - file: parts/mayas/maya_debug
   - caption: Unreal
     chapters:
     - file: parts/unreals/unreal
