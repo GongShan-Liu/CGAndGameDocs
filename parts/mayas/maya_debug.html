@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>代码脚本</title>
+    <title>远程到Maya进行Debug调试</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -57,11 +57,11 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'parts/mayas/code';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'parts/mayas/maya_debug';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="001-Maya API 概念整理" href="codes/M_Codes1_OpenMayaAPI.html" />
-    <link rel="prev" title="CGAndGameDocs" href="../../intro.html" />
+    <link rel="next" title="unreal" href="../unreals/unreal.html" />
+    <link rel="prev" title="Maya-xgen制作总结" href="hairs/M_hairs1_CreateXgen.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -170,7 +170,7 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Maya</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">代码脚本</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="code.html">代码脚本</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="codes/M_Codes1_OpenMayaAPI.html">001-Maya API 概念整理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="codes/M_Codes3_OpenMayaAPI.html">003-简单的命令插件</a></li>
 <li class="toctree-l2"><a class="reference internal" href="codes/M_Codes2_OpenMayaAPI.html">002-OpenMaya基础知识</a></li>
@@ -181,9 +181,7 @@
 <li class="toctree-l2"><a class="reference internal" href="hairs/M_hairs1_CreateXgen.html">Maya-xgen制作总结</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="maya_debug.html">远程到Maya进行Debug调试</a></li>
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">远程到Maya进行Debug调试</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unreal</span></p>
 <ul class="nav bd-sidenav">
@@ -263,7 +261,7 @@
       
       
       
-      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs/issues/new?title=Issue%20on%20page%20%2Fparts/mayas/code.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs/issues/new?title=Issue%20on%20page%20%2Fparts/mayas/maya_debug.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -293,7 +291,7 @@
       
       
       
-      <li><a href="../../_sources/parts/mayas/code.md" target="_blank"
+      <li><a href="../../_sources/parts/mayas/maya_debug.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -364,7 +362,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -375,11 +375,31 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>代码脚本</h1>
+    <h1>远程到Maya进行Debug调试</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharm">Pycharm篇</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharmdebug">1. 在Pycharm配置远程Debug</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2. 在Pycharm开启Debug远程</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. 运行连接代码</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code">VS code篇</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ptvsd">1. 下载 ptvsd 库</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vscdebug">2. 配置vsc的Debug文件</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. 运行连接代码</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vscmayadebug">4. 在vsc进入连接maya的Debug调试状态</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -389,10 +409,109 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>代码脚本<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="mayadebug">
+<h1>远程到Maya进行Debug调试<a class="headerlink" href="#mayadebug" title="Link to this heading">#</a></h1>
+<p>不熟悉Debug调试怎么操作可以先百度或者B站了解一下</p>
+<section id="pycharm">
+<h2>Pycharm篇<a class="headerlink" href="#pycharm" title="Link to this heading">#</a></h2>
+<p>必须安装的是专业版的Pycharm，网上有破解方案自行百度</p>
+<section id="pycharmdebug">
+<h3>1. 在Pycharm配置远程Debug<a class="headerlink" href="#pycharmdebug" title="Link to this heading">#</a></h3>
+<p> <img alt="" src="../../_images/d1_output_1.png" />
+ <img alt="" src="../../_images/d1_output_2.png" /></p>
+<p>填入Debug配置的名称，按以下标识勾选就可以了，端口Port 任意一个就可以了，只要还未被其他进程使用的端口都可以
+配置好之后 点击 Apply 应用就可以了</p>
+<p> <img alt="" src="../../_images/d1_output_3.png" /></p>
+</section>
+<section id="id1">
+<h3>2. 在Pycharm开启Debug远程<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p> <img alt="" src="../../_images/d1_output_4.png" /></p>
+<p>事先准备好测试的脚本即可
+确认好Debug配置文件是远程Debug配置，然后点击甲虫标志的按钮，或者Run -&gt; Debug
+或者按debug的快捷键</p>
+<p> <img alt="" src="../../_images/d1_output_5.png" /></p>
+<p>进入到等待连接Maya的状态
+ <img alt="" src="../../_images/d1_output_6.png" /></p>
+</section>
+<section id="id2">
+<h3>3. 运行连接代码<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p> 打开任意版本的maya，在python窗口执行以下的脚本</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="c1"># This should be the path your PyCharm installation</span>
+<span class="n">pydevd_egg</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Program Files\JetBrains\PyCharm 2018.1.4\debug-eggs\pycharm-debug.egg&quot;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">pydevd_egg</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+   <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pydevd_egg</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pydevd</span>
+<span class="n">pydevd</span><span class="o">.</span><span class="n">settrace</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">7020</span><span class="p">,</span> <span class="n">suspend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
 </div>
+<p> <img alt="" src="../../_images/d1_output_7.png" /></p>
+<p>egg 路径是 pycharm安装的路径 可以检查一下本地安装的pycharm的安装路径下有debug-eggs文件夹</p>
+<p>连接窗口的命令的在配置的时候，就有 直接复制即可
+ <img alt="" src="../../_images/d1_output_8.png" /></p>
+<p>Pycharm连接到了maya的状态，以下就是连接成功的状态
+ <img alt="" src="../../_images/d1_output_9.png" /></p>
+<p>进行脚本的调试
+ 在Pycharm进行断点
+ <img alt="" src="../../_images/d1_output_10.png" /></p>
+<p> 在maya内运行测试脚本的启动命令，这时Pycharm就进入了调试的状态，可以运用Pycharm的debug按钮进行代码的调试，这时Maya进入假死的状态（无法点击Maya窗口任何按钮），在pycharm调试的结果也会实时把信息打印在maya的脚本窗口
+ <img alt="" src="../../_images/d1_output_11.png" /></p>
+<p>Maya执行启动脚本的命令 根据测试的脚本 重新编写
+ <img alt="" src="../../_images/d1_output_12.png" /></p>
+<p>存在一个bug，Pycharm如果中断了连接状态，要重新连接maya，maya需要重启再运行脚本才可以重新连接上
+ <img alt="" src="../../_images/d1_output_13.png" /></p>
+</section>
+</section>
+<section id="vs-code">
+<h2>VS code篇<a class="headerlink" href="#vs-code" title="Link to this heading">#</a></h2>
+<p>参考网址：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://blog.l0v0.com/posts/4d164b82.html">VScode - MayaPy插件开发总结</a></p></li>
+<li><p><a class="reference external" href="http://iwonderwhatjoeisworkingon.blogspot.com/2017/04/debugging-maya-using-visual-studio-code.html">Debugging Maya using Visual Studio Code</a></p></li>
+</ul>
+<p>vsc有作者 智伤帝 写的vsc插件也可以实现 具体操作可以看插件说明
+以下是手动连接</p>
+<section id="ptvsd">
+<h3>1. 下载 ptvsd 库<a class="headerlink" href="#ptvsd" title="Link to this heading">#</a></h3>
+<p>  测试过以下版本是可以的
+  <a class="github reference external" href="https://github.com/microsoft/ptvsd/releases/tag/v4.3.2">microsoft/ptvsd</a>
+  解压提取src的ptvsd库，复制到maya的scripts路径下</p>
+<p> <img alt="" src="../../_images/d1_output_14.png" /></p>
+<p> <img alt="" src="../../_images/d1_output_15.png" /></p>
+</section>
+<section id="vscdebug">
+<h3>2. 配置vsc的Debug文件<a class="headerlink" href="#vscdebug" title="Link to this heading">#</a></h3>
+<p> 在准备好的测试项目下，点击Run and Debug，弹出的选择配置Remote Attach，全部按默认的按回车键（Enter键），最后打开json文件（不出来可以按上面操作几次），这时就有了项目配置的json文件了
+ <img alt="" src="../../_images/d1_output_16.png" /></p>
+<p> <img alt="" src="../../_images/d1_output_17.png" /></p>
+<p>修改端口和其他 按下面修改即可 记得保存json文件</p>
+<p> <img alt="" src="../../_images/d1_output_18.png" /></p>
+</section>
+<section id="id3">
+<h3>3. 运行连接代码<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>  在maya打开端口，运行代码窗口会闪一下</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ptvsd</span>
+<span class="c1"># 默认情况开启 localhost:5678 端口</span>
+<span class="c1">#ptvsd.enable_attach()</span>
+<span class="c1"># 可以传入元组来定义 地址和端口号</span>
+<span class="n">ptvsd</span><span class="o">.</span><span class="n">enable_attach</span><span class="p">((</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span><span class="mi">7020</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>脚本的端口改为和json设置的端口就可以了 在maya的python窗口运行
+ <img alt="" src="../../_images/d1_output_19.png" /></p>
+</section>
+<section id="vscmayadebug">
+<h3>4. 在vsc进入连接maya的Debug调试状态<a class="headerlink" href="#vscmayadebug" title="Link to this heading">#</a></h3>
+<p> <img alt="" src="../../_images/d1_output_20.png" /></p>
+<p>进入Debug调试状态
+ <img alt="" src="../../_images/d1_output_21.png" /></p>
+<p>进入Debug状态之后，在vsc进行断点</p>
+<p> <img alt="" src="../../_images/d1_output_22.png" /></p>
+<p> 然后可以在maya运行测试脚本的启动命令，这是就进入到了Maya的Debug脚本调试了，和Pycharm一样的情况，vsc的优点就是断开连接之后不用重启maya再连接
+ <img alt="" src="../../_images/d1_output_23.png" /></p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -426,20 +545,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../../intro.html"
+       href="hairs/M_hairs1_CreateXgen.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">CGAndGameDocs</p>
+        <p class="prev-next-title">Maya-xgen制作总结</p>
       </div>
     </a>
     <a class="right-next"
-       href="codes/M_Codes1_OpenMayaAPI.html"
+       href="../unreals/unreal.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">001-Maya API 概念整理</p>
+        <p class="prev-next-title">unreal</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -450,7 +569,32 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharm">Pycharm篇</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharmdebug">1. 在Pycharm配置远程Debug</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2. 在Pycharm开启Debug远程</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. 运行连接代码</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code">VS code篇</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ptvsd">1. 下载 ptvsd 库</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vscdebug">2. 配置vsc的Debug文件</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. 运行连接代码</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vscmayadebug">4. 在vsc进入连接maya的Debug调试状态</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
