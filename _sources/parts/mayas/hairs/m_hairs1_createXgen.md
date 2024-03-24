@@ -10,72 +10,72 @@
 
 &emsp; 可以指定相对路径或者绝对路径，如果是相对路径需要在渲染的时候指定一下相对路径的位置，建议是使用绝对路径问题比较少，绝对路径只是不利于迁移数据需要重新指定而已
 
-&emsp; ![](../../../images/Mayas/Hairs/h1_output_1.png)
+&emsp; ![](../../../images/mayas/hairs/h1_output_1.png)
 
-&emsp; ![](../../../images/Mayas/Hairs/h1_output_2.png)
+&emsp; ![](../../../images/mayas/hairs/h1_output_2.png)
 
 ### b. xgen的生长面
 
 &emsp; 不要直接在模型上面制作，尽量复制模型并裁剪出需要生长xgen的部分面来制作，<font color=red>生长面需要UV展好并合理，后续的制作环节不能再去修改或者改变生长面</font>
-&emsp;![](../../../images/Mayas/Hairs/h1_output_3.png)
+&emsp;![](../../../images/mayas/hairs/h1_output_3.png)
 
 ### c. 制作xgen的节点一定要使用烘焙
 
 &emsp;制作过程中的所有节点，<font color=red>不要使用live模式</font>，一定要使用baked模式，把效果烘焙成文件再读取回来
 
-&emsp;![](../../../images/Mayas/Hairs/h1_output_4.png)
+&emsp;![](../../../images/mayas/hairs/h1_output_4.png)
 
 ### d. xgen的表达式问题
 
 &emsp; 不要在表达式窗口使用`${DESC}`变量，<font color=red>xgen存在bug在表达式窗口无法正常读取到`${DESC}`</font>变量指向的description节点，所以在表达式窗口不要使用`${DESC}`变量
 
-&emsp;![](../../../images/Mayas/Hairs/h1_output_5.png)
+&emsp;![](../../../images/mayas/hairs/h1_output_5.png)
 
 在其他的窗口属性就可以正常的使用
 
-&emsp;![](../../../images/Mayas/Hairs/h1_output_6.png)
+&emsp;![](../../../images/mayas/hairs/h1_output_6.png)
 
 ### e. 使用Guide Check节点检查
 
 &emsp; 该节点可以检查出xgen的引导曲线是否重叠或者两者位置比较靠近，<font color=red>在xgen制作完成之后必须要使用给节点进行xgen的检查</font>，检查出有问题的引导曲线，也要删去或者修改，直到check没问题
 
-&emsp;![](../../../images/Mayas/Hairs/h1_output_7.png)
+&emsp;![](../../../images/mayas/hairs/h1_output_7.png)
 
 ## 3. xgen绑定
 
 &emsp;<font color=red>直接对生长面蒙皮或者使用blendShape都可以</font>
 &emsp;如果要绑定xgen的引导线，建议是绑定xgen的创建的hair system的输出曲线，绑定输出曲线，动画做完后，再把输出曲线导出abc让xgen使用；如果是直接绑定用xgen导线，可能会造成一些问题
-&emsp;![](../../../images/Mayas/Hairs/h1_output_8.png)
+&emsp;![](../../../images/mayas/hairs/h1_output_8.png)
 
 ## 4. xgen的解算
 
 &emsp; 使用Create Hair System创建nhair系统，通过对nhair系统来解算，解算完成之后把xgen的输出曲线导出abc，然后再指定回xgen读取
-&emsp;![](../../../images/Mayas/Hairs/h1_output_9.png)
+&emsp;![](../../../images/mayas/hairs/h1_output_9.png)
 
 导出，<font color=red>导出的时候一定要和原来解算的帧率一致</font>
-&emsp;![](../../../images/Mayas/Hairs/h1_output_10.png)
+&emsp;![](../../../images/mayas/hairs/h1_output_10.png)
 
 指定xgen读取动画abc，<font color=red>不要使用live Mode</font>
-&emsp;![](../../../images/Mayas/Hairs/h1_output_11.png)
+&emsp;![](../../../images/mayas/hairs/h1_output_11.png)
 
 ## 5. xgen的渲染
 
 &emsp;需要导出xgen批量渲染abc，每一个渲染文件都要导出
 
-&emsp;![](../../../images/Mayas/Hairs/h1_output_12.png)
+&emsp;![](../../../images/mayas/hairs/h1_output_12.png)
 
 <font color=red>快速导出技巧：</font>能帮助快速导出gen批量渲染abc
 关闭实时更新和隐藏xgen、隐藏xgen引导线、不显示所有的物体
 
-&emsp;![](../../../images/Mayas/Hairs/h1_output_13.png)
+&emsp;![](../../../images/mayas/hairs/h1_output_13.png)
 
-&emsp;![](../../../images/Mayas/Hairs/h1_output_14.png)
+&emsp;![](../../../images/mayas/hairs/h1_output_14.png)
 
-&emsp;![](../../../images/Mayas/Hairs/h1_output_15.png)
+&emsp;![](../../../images/mayas/hairs/h1_output_15.png)
 
 <font color=red>交互式xgen也需要在渲染前导出缓存</font>
 
-&emsp;![](../../../images/Mayas/Hairs/h1_output_16.png)
+&emsp;![](../../../images/mayas/hairs/h1_output_16.png)
 
 ## 6. 无法正常读取.xgen文件
 

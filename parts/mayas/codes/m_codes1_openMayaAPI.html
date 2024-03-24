@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Maya-xgen制作总结</title>
+    <title>001-Maya API 概念整理</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'parts/mayas/hairs/M_hairs1_CreateXgen';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'parts/mayas/codes/m_codes1_openMayaAPI';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="远程到Maya进行Debug调试" href="../maya_debug.html" />
-    <link rel="prev" title="毛发" href="../hair.html" />
+    <link rel="next" title="003-简单的命令插件" href="m_codes3_openMayaAPI.html" />
+    <link rel="prev" title="代码脚本" href="../code.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -170,24 +170,26 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Maya</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../code.html">代码脚本</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../codes/M_Codes1_OpenMayaAPI.html">001-Maya API 概念整理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../codes/M_Codes3_OpenMayaAPI.html">003-简单的命令插件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../codes/M_Codes2_OpenMayaAPI.html">002-OpenMaya基础知识</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../codes/M_Codes4_OpenMayaAPI.html">004-DG节点</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../code.html">代码脚本</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">001-Maya API 概念整理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="m_codes3_openMayaAPI.html">003-简单的命令插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="m_codes2_openMayaAPI.html">002-OpenMaya基础知识</a></li>
+<li class="toctree-l2"><a class="reference internal" href="m_codes4_openMayaAPI.html">004-DG节点</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../hair.html">毛发</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Maya-xgen制作总结</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hair.html">毛发</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hairs/m_hairs1_createXgen.html">Maya-xgen制作总结</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../maya_debug.html">远程到Maya进行Debug调试</a></li>
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unreal</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../unreals/unreal.html">unreal</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../unreals/basics.html">基础知识</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../unreals/basics/unreal_build.html">Unreal编译和构建的基础认识</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../unreals/ue_27_config_vs2019_and_vsc_windows.html">UE4.27配置Windows VS2019 &amp; VScode</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unity</span></p>
 <ul class="nav bd-sidenav">
@@ -263,7 +265,7 @@
       
       
       
-      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs/issues/new?title=Issue%20on%20page%20%2Fparts/mayas/hairs/M_hairs1_CreateXgen.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs/issues/new?title=Issue%20on%20page%20%2Fparts/mayas/codes/m_codes1_openMayaAPI.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -293,7 +295,7 @@
       
       
       
-      <li><a href="../../../_sources/parts/mayas/hairs/M_hairs1_CreateXgen.md" target="_blank"
+      <li><a href="../../../_sources/parts/mayas/codes/m_codes1_openMayaAPI.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -377,7 +379,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Maya-xgen制作总结</h1>
+    <h1>001-Maya API 概念整理</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -387,20 +389,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maya">1. Maya版本</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xgen">2. xgen创建</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-xgen">a. 指定xgen路径</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-xgen">b. xgen的生长面</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-xgen">c. 制作xgen的节点一定要使用烘焙</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-xgen">d. xgen的表达式问题</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-guide-check">e. 使用Guide Check节点检查</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. xgen绑定</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4. xgen的解算</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5. xgen的渲染</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6. 无法正常读取.xgen文件</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">参考</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dgdag">1. DG、DAG概念整理</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dg-dag">2. DG/DAG</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. DG/DAG节点</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">参考</a></li>
 </ul>
             </nav>
         </div>
@@ -412,84 +404,91 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="maya-xgen">
-<h1>Maya-xgen制作总结<a class="headerlink" href="#maya-xgen" title="Link to this heading">#</a></h1>
-<section id="maya">
-<h2>1. Maya版本<a class="headerlink" href="#maya" title="Link to this heading">#</a></h2>
-<p>  <font color=red>尽可能保持从制作到最终渲染xgen的Maya版本一致</font>，<font color=red>包括maya的小版本</font>（例如2018.6和2018.7），版本的问题也会导致最后渲染的时候，出现xgen拉丝的情况</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="maya-api">
+<h1>001-Maya API 概念整理<a class="headerlink" href="#maya-api" title="Link to this heading">#</a></h1>
+<section id="dgdag">
+<h2>1. DG、DAG概念整理<a class="headerlink" href="#dgdag" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>DG：Dependency Graph  依赖图可循环，简单理解DG表示连接关系
+<img alt="" src="../../../_images/c1_output_1.png" /></p></li>
+<li><p>DAG：directed acyclic graph  有向无循环图，简单理解DAG表示父子（或层级）关系
+<img alt="" src="../../../_images/c1_output_2.png" /></p></li>
+</ul>
+<p><strong>首先需要明确的是，DG/DAG 与 DG/DAG节点  是两个概念。DG/DAG是graph（图形），准确的说是对于节点结构的表现方式，DG/DAG节点则是节点。
+DG和DAG的概念就是描述Maya的节点关系，DG是连接关系，DAG是父子关系；基本上可以认为maya当中所有的node都是DG节点，包括DAG节点</strong></p>
 </section>
-<section id="xgen">
-<h2>2. xgen创建<a class="headerlink" href="#xgen" title="Link to this heading">#</a></h2>
-<section id="a-xgen">
-<h3>a. 指定xgen路径<a class="headerlink" href="#a-xgen" title="Link to this heading">#</a></h3>
-<p>  可以指定相对路径或者绝对路径，如果是相对路径需要在渲染的时候指定一下相对路径的位置，建议是使用绝对路径问题比较少，绝对路径只是不利于迁移数据需要重新指定而已</p>
-<p>  <img alt="" src="../../../_images/h1_output_1.png" /></p>
-<p>  <img alt="" src="../../../_images/h1_output_2.png" /></p>
-</section>
-<section id="b-xgen">
-<h3>b. xgen的生长面<a class="headerlink" href="#b-xgen" title="Link to this heading">#</a></h3>
-<p>  不要直接在模型上面制作，尽量复制模型并裁剪出需要生长xgen的部分面来制作，<font color=red>生长面需要UV展好并合理，后续的制作环节不能再去修改或者改变生长面</font>
- <img alt="" src="../../../_images/h1_output_3.png" /></p>
-</section>
-<section id="c-xgen">
-<h3>c. 制作xgen的节点一定要使用烘焙<a class="headerlink" href="#c-xgen" title="Link to this heading">#</a></h3>
-<p> 制作过程中的所有节点，<font color=red>不要使用live模式</font>，一定要使用baked模式，把效果烘焙成文件再读取回来</p>
-<p> <img alt="" src="../../../_images/h1_output_4.png" /></p>
-</section>
-<section id="d-xgen">
-<h3>d. xgen的表达式问题<a class="headerlink" href="#d-xgen" title="Link to this heading">#</a></h3>
-<p>  不要在表达式窗口使用<code class="docutils literal notranslate"><span class="pre">${DESC}</span></code>变量，<font color=red>xgen存在bug在表达式窗口无法正常读取到<code class="docutils literal notranslate"><span class="pre">${DESC}</span></code></font>变量指向的description节点，所以在表达式窗口不要使用<code class="docutils literal notranslate"><span class="pre">${DESC}</span></code>变量</p>
-<p> <img alt="" src="../../../_images/h1_output_5.png" /></p>
-<p>在其他的窗口属性就可以正常的使用</p>
-<p> <img alt="" src="../../../_images/h1_output_6.png" /></p>
-</section>
-<section id="e-guide-check">
-<h3>e. 使用Guide Check节点检查<a class="headerlink" href="#e-guide-check" title="Link to this heading">#</a></h3>
-<p>  该节点可以检查出xgen的引导曲线是否重叠或者两者位置比较靠近，<font color=red>在xgen制作完成之后必须要使用给节点进行xgen的检查</font>，检查出有问题的引导曲线，也要删去或者修改，直到check没问题</p>
-<p> <img alt="" src="../../../_images/h1_output_7.png" /></p>
-</section>
+<section id="dg-dag">
+<h2>2. DG/DAG<a class="headerlink" href="#dg-dag" title="Link to this heading">#</a></h2>
+<p>  Windows -&gt; GeneralEditors 可以打开Hypergraph
+其中hierarchy是以DAG的结构展现的 connections（连接）是以DG的结构展现的</p>
+<p> <img alt="" src="../../../_images/c1_output_3.png" /></p>
+<p>  进入其中任意一个，点击图标也可以切换</p>
+<p> <img alt="" src="../../../_images/c1_output_4.png" /></p>
+<ul>
+<li><p>DAG/Hypergraph hierarchy/directed acyclic graph
+在DAG模式中，场景中的所有DAG节点（关于DAG节点会稍后解释）都会全部以层级的方式显示出来</p>
+<p><img alt="" src="../../../_images/c1_output_5.png" /></p>
+</li>
+<li><p>DG/Hypergraph connections/Dependency Graph
+DG模式中，只有当前选中的DG节点且与之存在connection关系的节点会被显示出来</p>
+<p><img alt="" src="../../../_images/c1_output_6.png" /></p>
+</li>
+<li><p>Hierarchy（层级）/connection（连接）
+Hierarchy与connection（directed acyclic graph/Dependency Graph）区别在于direction（方向）和cyclic（循环），也就是两个node之间数据传输的方向和是否会是产生循环
+hierarchy是很简单的父子结构，单纯的单向数据传输（继承）关系，用于tranform；connnection则复杂且自由的多
+需要注意的是，hierarchy的关系在connection并没有被表现出来（没有线连接）
+所以connnection只展现了hierarchy以外iade关系。Hierarchy关系需要进入hierarchy graph</p></li>
+</ul>
 </section>
 <section id="id1">
-<h2>3. xgen绑定<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p> <font color=red>直接对生长面蒙皮或者使用blendShape都可以</font>
- 如果要绑定xgen的引导线，建议是绑定xgen的创建的hair system的输出曲线，绑定输出曲线，动画做完后，再把输出曲线导出abc让xgen使用；如果是直接绑定用xgen导线，可能会造成一些问题
- <img alt="" src="../../../_images/h1_output_8.png" /></p>
+<h2>3. DG/DAG节点<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>DG节点：基本上可以认为maya当中所有的node都是DG节点，包括DAG节点
+DAG节点：只有两种DAG node，transform 和shape；shape永远是transform的child；一组transform+shape组成一组DAG 结构
+官方对于DAG的描述：
+从本质上说，DAG是instance（实例）从几何体中构造出来的过程的分解
+In essence, the DAG is a breakdown of how an instance of an object is constructed from a piece of geometry</p></li>
+<li><p>理解一下这个创造过程</p>
+<ol class="arabic simple">
+<li><p>cube来自cmds.polyCube create</p></li>
+<li><p>create之后产生了一个polyCube的instance ：polyCube6</p></li>
+<li><p>由polyCube6产生了shape：pCubeShape6</p></li>
+<li><p>pCube6则是shape的transform</p></li>
+</ol>
+<p><img alt="" src="../../../_images/c1_output_7.png" /></p>
+</li>
+<li><p>Outliner当中 的相关显示选项；Outliner当中默认是只显示DAG而不显示其他的DG，并且不显示shapes的；需要的时候可以打开</p>
+<p><img alt="" src="../../../_images/c1_output_8.png" /></p>
+</li>
+</ul>
+<p>补充:</p>
+<ul>
+<li><p>maya里面object是由tranform+shape 组成的
+sphere0=cmds.polySphere()[0]
+cmds.polyShpere 所return的不是object name的string，而是一个list，
+list里面有2个string，一个是transform name，一个是shape name</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">maya.cmds</span> <span class="k">as</span> <span class="nn">cmds</span>
+<span class="n">sphere</span><span class="o">=</span><span class="n">cmds</span><span class="o">.</span><span class="n">polySphere</span><span class="p">()</span> <span class="c1">#获得包含2个tring的list</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span>
+
+<span class="n">sphere0</span><span class="o">=</span><span class="n">cmds</span><span class="o">.</span><span class="n">polySphere</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="c1">#获得return的list当中的第一个string</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sphere0</span><span class="p">)</span>
+<span class="n">sphere1</span><span class="o">=</span><span class="n">cmds</span><span class="o">.</span><span class="n">polySphere</span><span class="p">()[</span><span class="mi">1</span><span class="p">]]</span><span class="c1">#获得return的list当中的第二个string</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sphere1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="" src="../../../_images/c1_output_9.png" /></p>
+</li>
+</ul>
 </section>
 <section id="id2">
-<h2>4. xgen的解算<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>  使用Create Hair System创建nhair系统，通过对nhair系统来解算，解算完成之后把xgen的输出曲线导出abc，然后再指定回xgen读取
- <img alt="" src="../../../_images/h1_output_9.png" /></p>
-<p>导出，<font color=red>导出的时候一定要和原来解算的帧率一致</font>
- <img alt="" src="../../../_images/h1_output_10.png" /></p>
-<p>指定xgen读取动画abc，<font color=red>不要使用live Mode</font>
- <img alt="" src="../../../_images/h1_output_11.png" /></p>
-</section>
-<section id="id3">
-<h2>5. xgen的渲染<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p> 需要导出xgen批量渲染abc，每一个渲染文件都要导出</p>
-<p> <img alt="" src="../../../_images/h1_output_12.png" /></p>
-<p><font color=red>快速导出技巧：</font>能帮助快速导出gen批量渲染abc
-关闭实时更新和隐藏xgen、隐藏xgen引导线、不显示所有的物体</p>
-<p> <img alt="" src="../../../_images/h1_output_13.png" /></p>
-<p> <img alt="" src="../../../_images/h1_output_14.png" /></p>
-<p> <img alt="" src="../../../_images/h1_output_15.png" /></p>
-<p><font color=red>交互式xgen也需要在渲染前导出缓存</font></p>
-<p> <img alt="" src="../../../_images/h1_output_16.png" /></p>
-</section>
-<section id="id4">
-<h2>6. 无法正常读取.xgen文件<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-<p>  大部分无法正常读取.xgen文件，<font color=red>可以检查一下打开文件的过程是否存在报错的语句</font>，如果报一些插件的错误，可能是在制作的时候，该电脑maya安装了某个插件，但在其他电脑打开时，因为没有配置该插件就无法正常读取.xgen文件；例如：redshift插件等</p>
-<p>  <font color=red>大部分无法正常读取.xgen文件</font>都是因为maya<font color=red>打开过程的某些插件或者脚本或文件无法正常读取加载</font>，从而导致无法正常读取到.xgen文件，所以一定<font color=red>要分析打开过程的报错语句</font></p>
-</section>
-<section id="id5">
-<h2>参考<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<h2>参考<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://help.autodesk.com/view/MAYAUL/2018/CHS/?guid=GUID-C0470142-600B-4615-8110-EC779934DF5F">XGen 学习路径</a></p></li>
-<li><p><a class="reference external" href="https://help.autodesk.com/view/MAYAUL/2018/CHS/?guid=GUID-1A93B16B-7B6C-4FF8-9855-F0BE74E68DFF">渲染 XGen 基本体</a></p></li>
-<li><p><a class="reference external" href="https://www.bilibili.com/video/av25143777/?p=9&amp;amp;vd_source=4655f6297e93c05206bd3f385bdc5342">maya xgen 毛发制作</a></p></li>
-<li><p><a class="reference external" href="https://www.bilibili.com/video/av43898231/?from=search&amp;amp;seid=8274814087944584002&amp;amp;vd_source=4655f6297e93c05206bd3f385bdc5342">Maya2018 Xgen交互式</a></p></li>
-<li><p><a class="reference external" href="https://www.bilibili.com/video/av44158323/?vd_source=4655f6297e93c05206bd3f385bdc5342">Maya2018 Xgen毛发教学</a></p></li>
-<li><p><a class="reference external" href="https://help.autodesk.com/view/ARNOL/CHS/?guid=arnold_for_maya_shapes_shapes_xgen_html">XGen - Arnold for Maya</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/360546258">Maya 数据结构:DG /DAG/Shape/Transform概念整理</a></p></li>
+<li><p><a class="reference external" href="https://help.autodesk.com/view/MAYAUL/2018/CHS/?guid=__files_DAG_Hierarchy_Overview_of_the_DAG_Hierarchy_htm">DAG 层次结构概述</a></p></li>
+<li><p><a class="reference external" href="https://help.autodesk.com/view/MAYAUL/2018/CHS/?guid=__files_DAG_Hierarchy_Nodes_htm">节点</a></p></li>
+<li><p><a class="reference external" href="https://help.autodesk.com/view/MAYAUL/2018/CHS/?guid=__files_DAG_Hierarchy_Transforms_and_shapes_htm">变换和形状</a></p></li>
+<li><p><a class="reference external" href="https://help.autodesk.com/view/MAYAUL/2018/CHS/?guid=__files_DAG_Hierarchy_DAG_paths_htm">有向无环图路径</a></p></li>
 </ul>
 </section>
 </section>
@@ -507,7 +506,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./parts\mayas\hairs"
+            path: "./parts\mayas\codes"
         },
         predefinedOutput: true
     }
@@ -525,20 +524,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../hair.html"
+       href="../code.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">毛发</p>
+        <p class="prev-next-title">代码脚本</p>
       </div>
     </a>
     <a class="right-next"
-       href="../maya_debug.html"
+       href="m_codes3_openMayaAPI.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">远程到Maya进行Debug调试</p>
+        <p class="prev-next-title">003-简单的命令插件</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -558,20 +557,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maya">1. Maya版本</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xgen">2. xgen创建</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-xgen">a. 指定xgen路径</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-xgen">b. xgen的生长面</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-xgen">c. 制作xgen的节点一定要使用烘焙</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-xgen">d. xgen的表达式问题</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-guide-check">e. 使用Guide Check节点检查</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. xgen绑定</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4. xgen的解算</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5. xgen的渲染</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6. 无法正常读取.xgen文件</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">参考</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dgdag">1. DG、DAG概念整理</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dg-dag">2. DG/DAG</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. DG/DAG节点</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">参考</a></li>
 </ul>
   </nav></div>
 

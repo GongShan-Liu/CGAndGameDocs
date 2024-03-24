@@ -1,0 +1,936 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Unreal编译和构建的基础认识</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'parts/unreals/basics/unreal_build';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="UE4.27配置Windows VS2019 &amp; VScode" href="../ue_27_config_vs2019_and_vsc_windows.html" />
+    <link rel="prev" title="基础知识" href="../basics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt=" - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt=" - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Maya</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mayas/code.html">代码脚本</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mayas/codes/m_codes1_openMayaAPI.html">001-Maya API 概念整理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mayas/codes/m_codes3_openMayaAPI.html">003-简单的命令插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mayas/codes/m_codes2_openMayaAPI.html">002-OpenMaya基础知识</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mayas/codes/m_codes4_openMayaAPI.html">004-DG节点</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mayas/hair.html">毛发</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mayas/hairs/m_hairs1_createXgen.html">Maya-xgen制作总结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../mayas/maya_debug.html">远程到Maya进行Debug调试</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unreal</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../basics.html">基础知识</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Unreal编译和构建的基础认识</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ue_27_config_vs2019_and_vsc_windows.html">UE4.27配置Windows VS2019 &amp; VScode</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unity</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../unitys/unity.html">unity</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs/issues/new?title=Issue%20on%20page%20%2Fparts/unreals/basics/unreal_build.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/parts/unreals/basics/unreal_build.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Unreal编译和构建的基础认识</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Unreal模块</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-cs">2. Build.cs文件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. 加载模块</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#target-cs">4. Target.cs文件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uproject-uplugin">5. .uproject和.uplugin描述文件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c">6. 在C+目录添加文件夹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7. 命令行</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">8. 实时编译(代码热更新)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">9. 构建失败</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">10. 总结</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="unreal">
+<h1>Unreal编译和构建的基础认识<a class="headerlink" href="#unreal" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>1. Unreal模块<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>官方文档：</strong></p></li>
+</ul>
+<p>    <a class="reference external" href="https://docs.unrealengine.com/4.27/zh-CN/ProgrammingAndScripting/ProgrammingWithCPP/ModuleQuickStart/">创建Gameplay模块</a></p>
+<p>    <a class="reference external" href="https://docs.unrealengine.com/4.27/zh-CN/ProgrammingAndScripting/ProgrammingWithCPP/Modules/">虚幻引擎模块</a></p>
+<ul class="simple">
+<li><p>模块<strong>Modules</strong>是Unreal Engine架构的基本构建块。它们在独立的代码单元中封装了具体的编辑器工具、运行时功能、库或其他功能</p></li>
+<li><p>所有项目和插件在默认情况下都有自己的主模块（<strong>primary module</strong>），<strong>Gameplay模块</strong>是Unreal项目的主模块，<strong>Gameplay模块</strong>是指项目目录下的<strong>Source</strong>文件夹的内容
+Unreal的模块结构一般是指在项目或插件的源码文件目录结构</p></li>
+</ul>
+<p>注意：<strong>UnrealBuildTool（UBT）<strong>源码是使用</strong>C#编写</strong>的，构建Unreal模块和项目执行文件的代码文件<strong>Build.cs和Target.cs都是c#编写</strong>的，如果修改代码过程需要获取帮助可以直接查看父类的源码，路径位置如下：</p>
+<div class="highlight-tex notranslate"><div class="highlight"><pre><span></span>...<span class="sb">\[</span><span class="nb">unreal软件</span><span class="o">]</span><span class="nv">\Engine\Source\Programs\UnrealBuildTool\Configuration\ModuleRules</span><span class="nb">.cs</span>
+
+<span class="nb">...</span><span class="nv">\[</span><span class="nb">unreal软件</span><span class="o">]</span><span class="nv">\Engine\Source\Programs\UnrealBuildTool\Configuration\TargetRules</span><span class="nb">.cs</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>使用<strong>模块的好处：</strong></p></li>
+</ul>
+<p>    a. 模块会强制实施良好的代码分离，可用于封装功能并隐藏代码的内部成分</p>
+<p>    b. 模块编译为单独的编译单元。这意味着，只有已更改的模块才需要编译，较大项目的编译时间会显著缩短。</p>
+<p>   c. 模块在依赖性图表中链接在一起，并且仅允许实际使用的代码包含头文件，以符合<a class="reference external" href="https://docs.unrealengine.com/4.27/zh-CN/ProductionPipelines/BuildTools/UnrealBuildTool/IWYU/">Include What You Use (IWYU)标准</a>。这意味着，项目中未使用的模块将安全地排除在编译之外。</p>
+<p>    d. 可以控制在运行时何时加载和卸载具体的模块。这样一来，可以管理哪些系统可用并激活，从而优化项目的性能。</p>
+<p>    e. 可以基于特定条件（例如，项目是为哪个平台编译的），在项目中纳入或排除模块。</p>
+<ol class="arabic simple">
+<li><p>在模块的根目录中创建[<strong>ModuleName</strong>]<strong>.Build.cs</strong>文件，用以定义与其他模块的依赖性，并能被UBT系统发现</p></li>
+<li><p>在模块的根目录中创建 <strong>Private</strong> 和<strong>Public</strong>子文件夹</p></li>
+</ol>
+<p>    a. 与C++代码中的<strong>Private、Public或Protected</strong>访问权限说明符无关，实际上用于控制模块代码对于其他模块的可用性</p>
+<p>    b. 若模块不会成为其他模块的依赖性，可不创建 <strong>Private 和 Public</strong>。文件夹外部的所有代码的行为都是私有Private。如主模块，它很可能位于依赖性链条的末尾</p>
+<p>    c. <strong>Private</strong>子文件夹中创建[<strong>ModuleName</strong>]<strong>Module.cpp</strong>文件，使用此文件可提供启动和关闭模块的方法，以及Unreal用于管理模块的其他常用函数。[<strong>ModuleName</strong>]<strong>Module.cpp</strong>是Unreal Engine源代码中的模块实现文件的典型命名规范</p>
+<p>    d. 将头文件放在私有<strong>Private</strong>文件夹中，其内容仅会向其所属的模块公开。该文件夹中的类、结构体和枚举可供同一模块中的其他类访问，但不可用于其他模块中的类</p>
+<p>    e. 将头文件放在<strong>Public</strong>文件夹中，Unreal Engine构建系统会向依赖于当前模块的其他模块公开其内容。外部模块中的类将能够扩展<strong>Public</strong>文件夹中包含的类，并且还能够使用<strong>Public</strong>文件夹中的类、结构体和枚举创建变量和引用。<strong>Private、Public和Protected</strong> 说明符将对于函数和变量正常生效。</p>
+<p>    f. 可在<strong>Private和Public</strong>文件夹中创建子文件夹，进一步整理代码。尽可能保持一致，在<strong>Public</strong>创建子文件夹，那么<strong>Private</strong>对应也有相同名称的文件夹，头文件和cpp文件也须保持到对应子文件夹</p>
+<ul class="simple">
+<li><p>下面是模块的推荐文件夹结构示例：</p></li>
+</ul>
+<p>  <img alt="" src="../../../_images/b1_output_1.png" /></p>
+</section>
+<section id="build-cs">
+<h2>2. Build.cs文件<a class="headerlink" href="#build-cs" title="Link to this heading">#</a></h2>
+<p>  官方说明文档：<a class="reference external" href="https://docs.unrealengine.com/4.27/zh-CN/ProductionPipelines/BuildTools/UnrealBuildTool/ModuleFiles/">模块</a></p>
+<p>  虚幻编译工具(<strong>UBT</strong>)（<strong>Unreal Build Tool</strong>）是根据项目中的<strong>Target.cs</strong>文件和模块中的<strong>Build.cs</strong>文件的依赖性来构建项目。在构建模块时会忽略IDE解决方案文件，改为查找Source文件夹中的<strong>Build.cs</strong>文件。每个模块都必须有<strong>Build.cs</strong>文件，否则不会被UBT发现</p>
+<p>  在模块的根目录中创建 <strong>[ModuleName</strong>]<strong>.Build.cs</strong>文件，命名方式：模块名称.Build.cs。模块定义为从ModuleRules类继承的类</p>
+<div class="highlight-cs notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="c1">// 设置模块对Unreal ENGINE的UBT系统可见。</span>
+<span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ModuleName</span><span class="p">:</span><span class="w"> </span><span class="n">ModuleRules</span>
+<span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">public</span><span class="w"> </span><span class="nf">ModuleName</span><span class="p">(</span><span class="n">ReadOnlyTargetRules</span><span class="w"> </span><span class="n">Target</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">base</span><span class="p">(</span><span class="n">Target</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 将Unreal的Core、CoreUObject和Engine模块添加到模块的私有依赖性</span>
+<span class="w">        </span><span class="n">PrivateDependencyModuleNames</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Core&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CoreUObject&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Engine&quot;</span><span class="p">});</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  通过<strong>PrivateDependencyModuleNames和PublicDependencyModuleNames</strong>函数添加依赖模块到依赖列表</p>
+<p>具体<strong>Build.cs</strong>的方法与函数，需要去查看源码：</p>
+<div class="highlight-tex notranslate"><div class="highlight"><pre><span></span>  ...<span class="sb">\[</span><span class="nb">unreal版本</span><span class="o">]</span><span class="nv">\Engine\Source\Programs\UnrealBuildTool\Configuration\ModuleRules</span><span class="nb">.cs</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>3. 加载模块<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p><strong>.uproject和.uplugin</strong>文件包含一个Modules列表，该列表定义了项目需要加载的模块</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;Modules&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="s">&quot;Name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;ModuleTest&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;Runtime&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;LoadingPhase&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;Default&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="s">&quot;Name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;ModuleTestEditor&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;Editor&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>  最常见的模块<strong>Type是Runtime和Editor</strong>，它们分别用于游戏内的类和仅限编辑器的类
+  大部分Gameplay模块将直接列出<strong>Name</strong>，而<strong>Type将设置为Runtime</strong>。如果<strong>LoadingPhase</strong>未定义，将设置为<strong>Default</strong></p>
+<p>  加载阶段参考文档：</p>
+<p>    <a class="reference external" href="https://docs.unrealengine.com/4.27/en-US/API/Runtime/Projects/EHostType__Type/">EHostType::Type</a></p>
+</section>
+<section id="target-cs">
+<h2>4. Target.cs文件<a class="headerlink" href="#target-cs" title="Link to this heading">#</a></h2>
+<p>  官方说明文档：<a class="reference external" href="https://docs.unrealengine.com/4.27/zh-CN/ProductionPipelines/BuildTools/UnrealBuildTool/TargetFiles/">Target</a></p>
+<p>  <strong>Build.cs</strong>是解决模块与模块间的依赖关系；<strong>Target.cs</strong>是解决的是构建可执行文件（即exe文件等）中应该包含哪些模块的问题。而实现这些功能靠的都是Unreal中的UBT工具。从逻辑上来说，<strong>Target.cs</strong>的层级是高于<strong>Build.cs</strong></p>
+<p>支持以下目标类型的编译：</p>
+<ul class="simple">
+<li><p><strong>游戏</strong>：需要烘焙数据才能运行的standalone游戏</p></li>
+<li><p><strong>客户端</strong>：与游戏相同，但不包含任何服务器代码；适用于联网游戏</p></li>
+<li><p><strong>服务器</strong>：与游戏相同，但不包含任何客户端代码；适用于联网游戏中的专用服务器</p></li>
+<li><p><strong>编辑器</strong>：扩展虚幻编辑器的目标</p></li>
+<li><p><strong>程序</strong>：基于虚幻引擎打造的standalone工具程序</p></li>
+</ul>
+<p>  <strong>Target.cs</strong>是通过C#源文件声明的，扩展名为.target.cs，并存储在项目的<strong>Source目录</strong>下。每个.target.cs文件都声明一个类，从<strong>TargetRules</strong>基类衍生而来，并设置属性来控制如何从其构造函数进行编译。当要求编译目标时，虚幻编译工具将编译<strong>target.cs</strong>文件，并在其中构造类来确定其设置</p>
+<p>  .target.cs文件的典型结构：</p>
+<div class="highlight-cs notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="nn">UnrealBuildTool</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MyProjectTarget</span><span class="w"> </span><span class="p">:</span><span class="n">TargetRules</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="nf">MyProjectTarget</span><span class="p">(</span><span class="n">TargetInfo</span><span class="w"> </span><span class="n">Target</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">base</span><span class="p">(</span><span class="n">Target</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TargetType</span><span class="p">.</span><span class="n">Game</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// 此处为其他属性</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="uproject-uplugin">
+<h2>5. .uproject和.uplugin描述文件<a class="headerlink" href="#uproject-uplugin" title="Link to this heading">#</a></h2>
+<p>  官方说明文档：<a class="reference external" href="https://docs.unrealengine.com/4.27/zh-CN/ProductionPipelines/Plugins/#%E6%8F%92%E4%BB%B6%E6%8F%8F%E8%BF%B0%E6%96%87%E4%BB%B6">插件</a></p>
+<p>  操作uproject和uplugin的结构定义：</p>
+<p>    <a class="reference external" href="https://docs.unrealengine.com/4.27/en-US/API/Runtime/Projects/FProjectDescriptor/">FProjectDescriptor</a></p>
+<p>    <a class="reference external" href="https://docs.unrealengine.com/4.27/en-US/API/Runtime/Projects/FPluginDescriptor/">FPluginDescriptor</a></p>
+<ul class="simple">
+<li><p>项目和插件描述文件是命名分别以 <strong>.uproject</strong> 和 <strong>.uplugin</strong>结尾的文件。项目和插件描述文件分别固定位于项目和插件目录中，启动时将被引擎发现。命名方式：<strong>[项目名].uproject   [插件名].uplugin</strong></p></li>
+<li><p>项目和插件描述文件都是使用<strong>Json</strong>文件格式</p></li>
+<li><p><strong>插件描述文件</strong>：</p>
+<ul>
+<li><p>插件描述文件为JSON格式的变量列表，此类列表为<strong>FPluginDescriptor</strong>类型。其中具有一个附加字段”<strong>FileVersion</strong>”，其是文件结构中唯一的必需字段。”<strong>FileVersion</strong>”提供插件描述文件的版本，通常应设为引擎支持的最高版本（当前为”3”）。由于此版本应用于插件描述文件的格式，而非插件本身，因此其可能不会频繁变化，也不应随插件后续版本的发行而改变。要与引擎旧版本进行最大化兼容，可使用较旧版本号，但不建议进行此操作</p></li>
+</ul>
+</li>
+</ul>
+<p>示例：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;FileVersion&quot;</span><span class="w"> </span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Version&quot;</span><span class="w"> </span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;VersionName&quot;</span><span class="w"> </span><span class="p">:</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;FriendlyName&quot;</span><span class="w"> </span><span class="p">:</span><span class="s2">&quot;UObject Example Plugin&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Description&quot;</span><span class="w"> </span><span class="p">:</span><span class="s2">&quot;An example of a plugin which declares its own UObject type.This can be used as a starting point when creating your own plugin.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Category&quot;</span><span class="w"> </span><span class="p">:</span><span class="s2">&quot;Examples&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CreatedBy&quot;</span><span class="w"> </span><span class="p">:</span><span class="s2">&quot;Epic Games, Inc.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CreatedByURL&quot;</span><span class="w"> </span><span class="p">:</span><span class="s2">&quot;http://epicgames.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;DocsURL&quot;</span><span class="w"> </span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;MarketplaceURL&quot;</span><span class="w"> </span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;SupportURL&quot;</span><span class="w"> </span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;EnabledByDefault&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CanContainContent&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;IsBetaVersion&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Installed&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// 模块描述部分</span>
+<span class="w">    </span><span class="nt">&quot;Modules&quot;</span><span class="w"> </span><span class="p">:</span>
+<span class="w">    </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Name&quot;</span><span class="w"> </span><span class="p">:</span><span class="s2">&quot;UObjectPlugin&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Type&quot;</span><span class="w"> </span><span class="p">:</span><span class="s2">&quot;Developer&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;LoadingPhase&quot;</span><span class="w"> </span><span class="p">:</span><span class="s2">&quot;Default&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+<span class="c1">// 插件描述文件格式</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>插件描述符的模块描述</strong>：</p>
+<ul>
+<li><p>各条目须具有”<strong>Name</strong>”和”<strong>Type</strong>”字段。”<strong>Name</strong>”是插件模块的唯一命名，将随插件而加载。在运行时，插件的”<strong>Binaries</strong>”文件夹中需存在正确的插件二进制文件，并带有指定模块命名。对于具有<strong>Source</strong>目录的模块，模块的子文件夹树中须存在匹配的”<strong>.Build.cs</strong>”文件。”<strong>Type</strong>”设置模块的类型。有效的选项为：<strong>Runtime、RuntimeNoCommandlet、Developer、Editor、EditorNoCommandlet 和 Program</strong>。此类型决定能加载模块的应用程序类型。插件可使用不同类型模块的组合</p></li>
+</ul>
+</li>
+</ul>
+<p>  可参考：<a class="reference external" href="https://docs.unrealengine.com/5.0/en-US/API/Runtime/Projects/FModuleDescriptor/">FModuleDescript</a></p>
+</section>
+<section id="c">
+<h2>6. 在C+目录添加文件夹<a class="headerlink" href="#c" title="Link to this heading">#</a></h2>
+<p>参考:</p>
+<p>  <a class="reference external" href="https://www.cnblogs.com/u-n-owen/p/15248136.html">创建新C++模块方法</a></p>
+<p>  <a class="reference external" href="https://lxjk.github.io/2019/10/01/How-to-Make-Tools-in-U-E.html#_custom_project_settings">How to Make Tools in UE4</a></p>
+<p>  在Unreal的C+项目中，无法直接在编辑器上直接添加文件夹目录，需要通过代码的方式才可以实现，操作如下：</p>
+<p>  在C+目录下添加如下文件：</p>
+<p>    <img alt="" src="../../../_images/b1_output_2.png" /><img alt="" src="../../../_images/b1_output_3.png" /></p>
+<div class="highlight-cs notranslate"><div class="highlight"><pre><span></span><span class="c1">// Test_New_Module.Build.cs</span>
+<span class="c1">// Copyright Epic Games, Inc. All Rights Reserved.</span>
+
+<span class="k">using</span><span class="w"> </span><span class="nn">UnrealBuildTool</span><span class="p">;</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Test_New_Module</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ModuleRules</span>
+<span class="p">{</span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="nf">Test_New_Module</span><span class="p">(</span><span class="n">ReadOnlyTargetRules</span><span class="w"> </span><span class="n">Target</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">base</span><span class="p">(</span><span class="n">Target</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">                </span><span class="n">PCHUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PCHUsageMode</span><span class="p">.</span><span class="n">UseExplicitOrSharedPCHs</span><span class="p">;</span>
+<span class="w">        </span>
+<span class="w">                </span><span class="n">PublicDependencyModuleNames</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span>
+<span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span>
+<span class="w">                        </span><span class="p">{</span><span class="w"> </span>
+<span class="w">                                </span><span class="s">&quot;Core&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                </span><span class="s">&quot;CoreUObject&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                </span><span class="s">&quot;Engine&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                </span><span class="s">&quot;InputCore&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;LevelEditor&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;Slate&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;EditorStyle&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;AssetTools&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;EditorWidgets&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;UnrealEd&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;BlueprintGraph&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;AnimGraph&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;ComponentVisualizers&quot;</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                        </span><span class="p">);</span>
+
+<span class="w">                </span><span class="n">PrivateDependencyModuleNames</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span>
+<span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span>
+<span class="w">                        </span><span class="p">{</span>
+<span class="w">                                </span><span class="s">&quot;Core&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;CoreUObject&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;Engine&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;AppFramework&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;SlateCore&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;AnimGraph&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;UnrealEd&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;KismetWidgets&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;MainFrame&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;PropertyEditor&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;ComponentVisualizers&quot;</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                        </span><span class="p">);</span>
+
+<span class="w">                </span><span class="c1">// Uncomment if you are using Slate UI</span>
+<span class="w">                </span><span class="c1">// PrivateDependencyModuleNames.AddRange(new string[] { &quot;Slate&quot;, &quot;SlateCore&quot; });</span>
+
+<span class="w">                </span><span class="c1">// Uncomment if you are using online features</span>
+<span class="w">                </span><span class="c1">// PrivateDependencyModuleNames.Add(&quot;OnlineSubsystem&quot;);</span>
+
+<span class="w">                </span><span class="c1">// To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Test_New_Module.h</span>
+<span class="c1">// Copyright Epic Games, Inc. All Rights Reserved.</span>
+
+<span class="cp">#pragma once</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;UnrealEd.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SlateBasics.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SlateExtras.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Editor/LevelEditor/Public/LevelEditor.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Editor/PropertyEditor/Public/PropertyEditing.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;IAssetTypeActions.h&quot;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;CoreMinimal.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Modules/ModuleManager.h&quot;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestModuleListenerInterface</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">OnStartupModule</span><span class="p">()</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">OnShutdownModule</span><span class="p">()</span><span class="w"> </span><span class="p">{};</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FTest_New_Module</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IModuleInterface</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">StartupModule</span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">IsRunningCommandlet</span><span class="p">())</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">AddModuleListeners</span><span class="p">();</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">int32</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ModuleListeners</span><span class="p">.</span><span class="n">Num</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">ModuleListeners</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">OnStartupModule</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">ShutdownModule</span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">int32</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ModuleListeners</span><span class="p">.</span><span class="n">Num</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">ModuleListeners</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">OnShutdownModule</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">AddModuleListeners</span><span class="p">();</span>
+
+<span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="n">TArray</span><span class="o">&lt;</span><span class="n">TSharedRef</span><span class="o">&lt;</span><span class="n">TestModuleListenerInterface</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">ModuleListeners</span><span class="p">;</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Test_New_Module.cpp</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Test_New_Module.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Modules/ModuleManager.h&quot;</span>
+
+<span class="n">IMPLEMENT_GAME_MODULE</span><span class="p">(</span><span class="n">FTest_New_Module</span><span class="p">,</span><span class="w"> </span><span class="n">Test_New_Module</span><span class="p">)</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">FTest_New_Module</span><span class="o">::</span><span class="n">AddModuleListeners</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// add tools later</span>
+<span class="w">    </span><span class="c1">// &quot;new MenuTool&quot; 是该模块下的子目录</span>
+<span class="w">    </span><span class="c1">// ModuleListeners.Add(MakeShareable(new MenuTool));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>在C+的目录…Editor.Target.cs添加如下：</p>
+<div class="highlight-cs notranslate"><div class="highlight"><pre><span></span><span class="n">ExtraModuleNames</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;Test_New_Module&quot;</span><span class="w"> </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>在项目的uproject添加加载模块</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="s">&quot;Name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;Test_New_Module&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;Editor&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;LoadingPhase&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;PostEngineInit&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;AdditionalDependencies&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s">&quot;Engine&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>编译成功之后，在编辑器添加类时，可选择新添加的模块
+  <img alt="" src="../../../_images/b1_output_4.png" /></p>
+<p>给该新模块添加一个Actor的类，编译成功之后才能在编辑器的浏览器上可见
+  <img alt="" src="../../../_images/b1_output_5.png" /></p>
+</section>
+<section id="id3">
+<h2>7. 命令行<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>参考:
+  <a class="reference external" href="https://docs.unrealengine.com/5.2/zh-CN/command-line-arguments-in-unreal-engine/">命令行参数</a></p>
+<p>可用命令行添加额外的插件路径</p>
+<p>在cmd使用以下代码</p>
+<div class="highlight-tex notranslate"><div class="highlight"><pre><span></span>// 主要使用参数 -PLUGIN=  ，exe可以是UE4Editor-Cmd.exe
+...<span class="k">\UE</span>4Editor.exe -PLUGIN=E:<span class="k">\Lsy</span><span class="nb">_</span>Files<span class="k">\unreal</span><span class="nb">_</span>pro<span class="k">\Test</span><span class="nb">_</span>Scripts<span class="nb">_</span>Pro<span class="k">\Plugins</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2>8. 实时编译(代码热更新)<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>在Unreal新的版本都支持实时编译和热更新</p>
+<p>主要有两种方案：</p>
+<ul class="simple">
+<li><p><strong>编译开启Live Coding</strong></p>
+<ul>
+<li><p>注意目前Live Coding还是存在很多无法编译热更的问题，推荐使用：Recompile
+<a class="reference external" href="https://docs.unrealengine.com/5.2/zh-CN/using-live-coding-to-recompile-unreal-engine-applications-at-runtime/">Live Coding</a></p></li>
+<li><p>在工具栏的编译按钮下可开启 Live Coding，如果编译失败，建议查看失败描述；<strong>一般实时编译与一般编译生成的文件不一样，所以需要实时编译的模块，要把编译文件夹Binaries和Intermediate删掉并重新编译才能使用实时编译或恢复默认编译</strong>；一般直接在IDE编写好代码，之后点击编译按钮即可弹出实时编译的窗口，可以预览到实时编译的情况，编译成功即可
+  <img alt="" src="../../../_images/b1_output_6.png" /></p></li>
+</ul>
+</li>
+<li><p><strong>Modules管理器卸载、重加载、重编译</strong></p>
+<ul>
+<li><p>Unreal界面菜单栏-&gt; Window -&gt; Developer Tools -&gt; Modeles</p></li>
+<li><p>该管理器可以实现加载、卸载、重加载、重编译等功能，一般在IDE编写好代码之后，<strong>先卸载模块再重编译最后再重新加载即可</strong></p></li>
+<li><p>有些模块没有卸载和加载按钮的原因，可参考：
+<a class="reference external" href="https://forums.unrealengine.com/t/what-determines-the-availability-of-unload-reload-buttons-for-editor-modules/350085/3">What determines the availability of unload / reload buttons for editor modules? - Platform &amp; Builds</a></p></li>
+<li><p>模块的卸载和加载有时候不存在，可以使用Recompile（推荐使用）功能也能实现热更的效果<font color=red>（但该功能不能和Live Coding混合使用）</font></p></li>
+</ul>
+</li>
+</ul>
+<p>      <img alt="" src="../../../_images/b1_output_7.png" /></p>
+<p>      <img alt="" src="../../../_images/b1_output_8.png" /></p>
+</section>
+<section id="id5">
+<h2>9. 构建失败<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>在Unreal C+的项目，通过编辑器新建C+的类时，编译出现报错，显示的报错内容基本上都是”<font color=red>无法解析外部符号</font>”，那么基本上可以判定是新添加的类没有在Bulid.cs文件添加该类的依赖库，可以直接在Build.cs添加所需的依赖库（可以直接在UE安装目录的Source找所对应的类的库，可直接复制库的Build.cs文件依赖库），然后重新编译即可</p>
+<ul>
+<li><p>构建项目失败 可以使用cmd运行构建工具，代码如下：</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-tex notranslate"><div class="highlight"><pre><span></span>// 4.27+
+&quot;...(UE安装目录)/Engine/Binaries/DotNET/UnrealBuildTool.exe&quot; Development Win64 -Project=&quot;.../***.uproject&quot; -TargetType=Editor -Progress -NoEngineChanges -NoHotReloadFromIDE
+
+
+// 5.0+
+&quot;...(UE安装目录)/Engine/Binaries/DotNET/UnrealBuildTool/UnrealBuildTool.exe&quot; Development Win64 -Project=&quot;.../***.uproject&quot; -TargetType=Editor -Progress -NoEngineChanges -NoHotReloadFromIDE
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>构建失败的本地日志位置</p></li>
+</ul>
+<div class="highlight-tex notranslate"><div class="highlight"><pre><span></span>// 日志文件路径在 系统用户文件路径下； 注意每次项目构建都会把日志写入到当前文件内
+[用户文件夹]<span class="k">\AppData\Local\UnrealBuildTool\Log</span>.txt
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h2>10. 总结<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>  模块<strong>Modules</strong>是Unreal Engine架构的基本构建块，<strong>Gameplay模块</strong>是Unreal项目的主模块</p>
+<p>  模块的 <strong>Private 和 Public</strong> 子文件夹；<strong>Private</strong> 的内容仅会向其所属的模块公开，一般放置cpp文件；<strong>Public</strong>向依赖于当前模块的其他模块公开其内容，一般放置头文件，也会有cpp文件</p>
+<p>  <strong>UnrealBuildTool（UBT）源码是使用C#编写的</strong>，构建Unreal模块和项目执行文件的代码文件<strong>Build.cs和Target.cs都是c#编写的</strong>，<strong>Build.cs和Target.cs</strong>的功能都需要UBT来实现</p>
+<p>  <strong>Build.cs</strong>是解决模块与模块间的依赖关系，通过<strong>PrivateDependencyModuleNames和PublicDependencyModuleNames</strong>函数添加依赖模块到依赖列表，在 <strong>.uproject和.uplugin</strong>文件的Modules列表添加需要加载的模块</p>
+<p>  <strong>Target.cs</strong>是解决构建可执行文件时应包含的模块，其编译的目标类型：<strong>游戏、客户端、服务器、编辑器、程序</strong></p>
+<p>流程参考图（可能有误）：
+  <img alt="" src="../../../_images/b1_output_9.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./parts\unreals\basics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../basics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">基础知识</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../ue_27_config_vs2019_and_vsc_windows.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">UE4.27配置Windows VS2019 &amp; VScode</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Unreal模块</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-cs">2. Build.cs文件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. 加载模块</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#target-cs">4. Target.cs文件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uproject-uplugin">5. .uproject和.uplugin描述文件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c">6. 在C+目录添加文件夹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7. 命令行</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">8. 实时编译(代码热更新)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">9. 构建失败</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">10. 总结</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By yao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
