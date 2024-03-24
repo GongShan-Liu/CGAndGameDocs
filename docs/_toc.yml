@@ -8,17 +8,20 @@ parts:
     chapters:
     - file: parts/mayas/code
       sections:
-      - file: parts/mayas/codes/M_Codes1_OpenMayaAPI
-      - file: parts/mayas/codes/M_Codes3_OpenMayaAPI
-      - file: parts/mayas/codes/M_Codes2_OpenMayaAPI
-      - file: parts/mayas/codes/M_Codes4_OpenMayaAPI
+      - file: parts/mayas/codes/m_codes1_openMayaAPI
+      - file: parts/mayas/codes/m_codes3_openMayaAPI
+      - file: parts/mayas/codes/m_codes2_openMayaAPI
+      - file: parts/mayas/codes/m_codes4_openMayaAPI
     - file: parts/mayas/hair
       sections:
-      - file: parts/mayas/hairs/M_hairs1_CreateXgen
+      - file: parts/mayas/hairs/m_hairs1_createXgen
     - file: parts/mayas/maya_debug
   - caption: Unreal
     chapters:
-    - file: parts/unreals/unreal
+    - file: parts/unreals/basics
+      sections:
+      - file: parts/unreals/basics/unreal_build
+    - file: parts/unreals/ue_27_config_vs2019_and_vsc_windows
   - caption: Unity
     chapters:
     - file: parts/unitys/unity

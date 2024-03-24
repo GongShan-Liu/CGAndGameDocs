@@ -1,10 +1,10 @@
 # 001-Maya API 概念整理
 ## 1. DG、DAG概念整理
   - DG：Dependency Graph  依赖图可循环，简单理解DG表示连接关系
-    ![](../../../images/Mayas/Codes/c1_output_1.png)
+    ![](../../../images/mayas/codes/c1_output_1.png)
 
   - DAG：directed acyclic graph  有向无循环图，简单理解DAG表示父子（或层级）关系
-    ![](../../../images/Mayas/Codes/c1_output_2.png)
+    ![](../../../images/mayas/codes/c1_output_2.png)
 
 **首先需要明确的是，DG/DAG 与 DG/DAG节点  是两个概念。DG/DAG是graph（图形），准确的说是对于节点结构的表现方式，DG/DAG节点则是节点。
 DG和DAG的概念就是描述Maya的节点关系，DG是连接关系，DAG是父子关系；基本上可以认为maya当中所有的node都是DG节点，包括DAG节点**
@@ -12,21 +12,21 @@ DG和DAG的概念就是描述Maya的节点关系，DG是连接关系，DAG是父
  &emsp; Windows -> GeneralEditors 可以打开Hypergraph
   其中hierarchy是以DAG的结构展现的 connections（连接）是以DG的结构展现的
 
-  &emsp;![](../../../images/Mayas/Codes/c1_output_3.png)
+  &emsp;![](../../../images/mayas/codes/c1_output_3.png)
 
 &emsp; 进入其中任意一个，点击图标也可以切换
 
-  &emsp;![](../../../images/Mayas/Codes/c1_output_4.png)
+  &emsp;![](../../../images/mayas/codes/c1_output_4.png)
 
 - DAG/Hypergraph hierarchy/directed acyclic graph
 在DAG模式中，场景中的所有DAG节点（关于DAG节点会稍后解释）都会全部以层级的方式显示出来
 
-  ![](../../../images/Mayas/Codes/c1_output_5.png)
+  ![](../../../images/mayas/codes/c1_output_5.png)
 
 - DG/Hypergraph connections/Dependency Graph
 DG模式中，只有当前选中的DG节点且与之存在connection关系的节点会被显示出来
 
-  ![](../../../images/Mayas/Codes/c1_output_6.png)
+  ![](../../../images/mayas/codes/c1_output_6.png)
 
 - Hierarchy（层级）/connection（连接）
 Hierarchy与connection（directed acyclic graph/Dependency Graph）区别在于direction（方向）和cyclic（循环），也就是两个node之间数据传输的方向和是否会是产生循环
@@ -47,11 +47,11 @@ In essence, the DAG is a breakdown of how an instance of an object is constructe
   3. 由polyCube6产生了shape：pCubeShape6
   4. pCube6则是shape的transform
 
-  ![](../../../images/Mayas/Codes/c1_output_7.png)
+  ![](../../../images/mayas/codes/c1_output_7.png)
 
 - Outliner当中 的相关显示选项；Outliner当中默认是只显示DAG而不显示其他的DG，并且不显示shapes的；需要的时候可以打开
 
-  ![](../../../images/Mayas/Codes/c1_output_8.png)
+  ![](../../../images/mayas/codes/c1_output_8.png)
 
 补充:
 - maya里面object是由tranform+shape 组成的
@@ -70,7 +70,7 @@ list里面有2个string，一个是transform name，一个是shape name
   print(sphere1)
   ```
   
-  ![](../../../images/Mayas/Codes/c1_output_9.png)
+  ![](../../../images/mayas/codes/c1_output_9.png)
 
 ## 参考
 

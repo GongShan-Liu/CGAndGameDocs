@@ -1,0 +1,696 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>UE4.27配置Windows VS2019 &amp; VScode</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'parts/unreals/ue_27_config_vs2019_and_vsc_windows';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="unity" href="../unitys/unity.html" />
+    <link rel="prev" title="Unreal编译和构建的基础认识" href="basics/unreal_build.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt=" - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt=" - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Maya</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mayas/code.html">代码脚本</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mayas/codes/m_codes1_openMayaAPI.html">001-Maya API 概念整理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mayas/codes/m_codes3_openMayaAPI.html">003-简单的命令插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mayas/codes/m_codes2_openMayaAPI.html">002-OpenMaya基础知识</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mayas/codes/m_codes4_openMayaAPI.html">004-DG节点</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mayas/hair.html">毛发</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mayas/hairs/m_hairs1_createXgen.html">Maya-xgen制作总结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mayas/maya_debug.html">远程到Maya进行Debug调试</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unreal</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="basics.html">基础知识</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="basics/unreal_build.html">Unreal编译和构建的基础认识</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">UE4.27配置Windows VS2019 &amp; VScode</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unity</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../unitys/unity.html">unity</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs/issues/new?title=Issue%20on%20page%20%2Fparts/unreals/ue_27_config_vs2019_and_vsc_windows.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/parts/unreals/ue_27_config_vs2019_and_vsc_windows.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>UE4.27配置Windows VS2019 & VScode</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">前文说明：</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ue4-27vs2019">1. UE4.27配置VS2019</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs2019">1.1 下载和安装VS2019</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unrealvs">1.2 安装UnrealVS扩展</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ue">1.3 测试UE项目</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ue4-27vscode">2. UE4.27配置VSCode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vscode">2.1 下载和安装VSCode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.2 测试UE项目</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vscodebug">2.3  修复.vscode配置文件的bug</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vscodeunrealpython">2.4 VSCode配置Unreal的python</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ue4-27windows-vs2019-vscode">
+<h1>UE4.27配置Windows VS2019 &amp; VScode<a class="headerlink" href="#ue4-27windows-vs2019-vscode" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>前文说明：<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>  网上资料说对Unreal Engine支持最好的IDE是JetBrains Rider(确实是最好的)，在这里暂不讨论，有兴趣可自行网上查询怎么配置和使用
+目前该本文只讨论<strong>Windows环境UE4.27配置VS2019 &amp; VScode</strong></p>
+</section>
+<section id="ue4-27vs2019">
+<h2>1. UE4.27配置VS2019<a class="headerlink" href="#ue4-27vs2019" title="Link to this heading">#</a></h2>
+<p>Unreal官方配置vs的文档说明，有需要可自行查阅  <a class="reference external" href="https://docs.unrealengine.com/4.27/zh-CN/ProductionPipelines/DevelopmentSetup/VisualStudioSetup/">设置虚幻引擎的Visual Studio</a></p>
+<section id="vs2019">
+<h3>1.1 下载和安装VS2019<a class="headerlink" href="#vs2019" title="Link to this heading">#</a></h3>
+<p>  官方要求UE4.25版本以上需要配置VS2019
+<img alt="" src="../../_images/vs_output_1.png" /></p>
+<p> 官方下载地址，需要自行注册账号，才可以下载Visual Studio安装器，VS有三个版本可以下载，自行根据自身需求下载即可；下载完成之后，按默认安装即可</p>
+<p>  <a class="reference external" href="https://visualstudio.microsoft.com/zh-hans/vs/older-downloads/">Visual Studio下载</a></p>
+<p> VS2019所需安装的组件，UE说明文档有截图，但测试发现还少了一些组件，建议按一下推荐的组件勾选，因为<font color=red>缺少某些组件安装会导致后续UnrealVS扩展的安装失败</font>
+ 安装默认路径安装即可，系统环境变量Path应该会自动添加上安装的MSVC路径的，如果没有可以自行添加
+  <img alt="" src="../../_images/vs_output_2.png" /></p>
+<p> 红框为必须的组件
+  <img alt="" src="../../_images/vs_output_3.png" />
+  <img alt="" src="../../_images/vs_output_4.png" /></p>
+<p> 安装完成如下图，如果存在多个VS版本，要注意系统环境变量，尽可能只设置一个VS版本的路径
+  <img alt="" src="../../_images/vs_output_5.png" /></p>
+<p> 可自行新建一个vs的项目，测试VS2019是否正常使用
+  <img alt="" src="../../_images/vs_output_6.png" /></p>
+</section>
+<section id="unrealvs">
+<h3>1.2 安装UnrealVS扩展<a class="headerlink" href="#unrealvs" title="Link to this heading">#</a></h3>
+<p>  UnrealVS扩展为VS提供智能提示等多个功能，详细可以参考官方安装说明</p>
+<p>   <a class="reference external" href="https://docs.unrealengine.com/4.27/zh-CN/ProductionPipelines/DevelopmentSetup/VisualStudioSetup/UnrealVS/">UnrealVS扩展</a></p>
+<p> 在Unreal的安装路径下Extras文件夹可以找到该扩展，下面为默认的扩展路径，安装按默认安装即可，安装的具体细节可以参考官方说明
+  <img alt="" src="../../_images/vs_output_7.png" /></p>
+<p> UnrealVS扩展出现安装失败的情况，应该是某些VS2019的组件安装缺少或VS版本过低，<font color=red>注意如果还是安装失败要使用winrar把UnrealVS解压，在解压文件夹下找到extension.visxmanifest文件，打开可以看到需要安装的vs版本和.NET版本，如果安装的VS版本和.NET版本低于需要的版本，那么就要升级VS和.NET版本</font>
+  <img alt="" src="../../_images/vs_output_8.png" /></p>
+<p> 正常安装之后在vs的扩展可以查看到
+<img alt="" src="../../_images/vs_output_9.png" /></p>
+</section>
+<section id="ue">
+<h3>1.3 测试UE项目<a class="headerlink" href="#ue" title="Link to this heading">#</a></h3>
+<p>  创建新Unreal的C++项目，其他按默认空白项目创建，把蓝图项目改为C++项目即可
+<img alt="" src="../../_images/vs_output_10.png" /></p>
+<p>打开UE后，在插件管理器，把这三个插件勾选，重启UE
+<img alt="" src="../../_images/vs_output_11.png" /></p>
+<p>  UE构建VS2019项目，在Edit -&gt; Editor Preferences -&gt; Source Code 修改为Visual Studio2019；然后重启UE，在File -&gt; Generate Visual Studio 2019 Project，点击生成VS2019的项目配置文件，生成完成后，可以直接在File -&gt; Open Visual Studio 2019打开VS2019，Refresh Visual Studio 2019 Project就是刷新vs的配置文件
+<img alt="" src="../../_images/vs_output_12.png" />
+<img alt="" src="../../_images/vs_output_13.png" />
+<img alt="" src="../../_images/vs_output_14.png" /> <img alt="" src="../../_images/vs_output_15.png" /></p>
+<p>  在VS点击构建UE项目或者Unreal点击编译的时候，会出现构建失败，这个是UE生成的配置文件出现的BUG，可以按下面方法修复</p>
+<p>  <img alt="" src="../../_images/vs_output_16.png" /></p>
+<p>  找到Source文件夹下项目文件夹的 .Build.cs文件，按一下说明修改保存即可，再点击VS的构建项目或者在Unreal点击编译也不会失败了</p>
+<div class="highlight-cs notranslate"><div class="highlight"><pre><span></span><span class="c1">//修改改代码，添加 &quot;Blutility&quot;</span>
+<span class="n">PublicDependencyModuleNames</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;Core&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CoreUObject&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Engine&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;InputCore&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Blutility&quot;</span><span class="w"> </span><span class="p">});</span>
+
+<span class="c1">//新增代码</span>
+<span class="n">PublicIncludePaths</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Path</span><span class="p">.</span><span class="n">GetFullPath</span><span class="p">(</span><span class="n">Target</span><span class="p">.</span><span class="n">RelativeEnginePath</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;Source/Editor/Blutility/Private&quot;</span><span class="w"> </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>  <img alt="" src="../../_images/vs_output_17.png" /></p>
+<p>  新建UE的类测试，新建的类继续AssetActionUtility父类，<font color=red>注意在vs编写好的c++文件要重新vs构建或UE重编译，UE才能正常读取到修改好的类文件</font>
+  <img alt="" src="../../_images/vs_output_18.png" />
+  <img alt="" src="../../_images/vs_output_19.png" />
+  <img alt="" src="../../_images/vs_output_20.png" /></p>
+<p>  在VS中头文件正常，UE的类型和智能提示也是正常，就说明配置成功了，值得注意是VS的智能提示速度有点慢，网上有配置VAssistX插件来解决该问题，可参考测试
+ <a class="reference external" href="https://zhuanlan.zhihu.com/p/266199524">UE4 C++ 开发 VisualStudio终极设置</a></p>
+</section>
+</section>
+<section id="ue4-27vscode">
+<h2>2. UE4.27配置VSCode<a class="headerlink" href="#ue4-27vscode" title="Link to this heading">#</a></h2>
+<p>  <font color=red>安装vscode之前也是需要先安装好vs2019和所需的组件（可参考上文）</font>，并且需要安装Python3.7.7，需要配合python来修复一些.vscode配置文件的bug，安装python3.7.7版本是因为UE4.27支持该版本，并且也方便配置VSCode配置ue的python
+  官方说明
+  <img alt="" src="../../_images/vs_output_21.png" /></p>
+<p>  下载地址</p>
+<p>    <a class="reference external" href="https://www.python.org/downloads/release/python-377/">Python 3.7.7</a></p>
+<section id="vscode">
+<h3>2.1 下载和安装VSCode<a class="headerlink" href="#vscode" title="Link to this heading">#</a></h3>
+<p>  去官网下载并按默认安装即可</p>
+<p>    <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a></p>
+<p>vscode配置下载所需的插件，红框就是所需的vscode插件
+  <img alt="" src="../../_images/vs_output_22.png" /> <img alt="" src="../../_images/vs_output_23.png" /></p>
+</section>
+<section id="id2">
+<h3>2.2 测试UE项目<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>  创建项目和配置ue插件步骤，可参考前面Windows环境下UE4.27配置VS2019 &amp; VScode
+  设置Source Code Editor为Visual Studio Code，然后重启UE，在File -&gt; Generate Visual Studio Code Project <font color=blue>(因为项目之前已经生成过VSCode，所以没有该命令）</font>，点击生成VSCode的配置文件，生成完成后，可以直接在File -&gt; Open Visual Studio Code打开VSCode，Refresh Visual Studio Code Project就是刷新vscode的配置文件
+  <img alt="" src="../../_images/vs_output_24.png" />
+  <img alt="" src="../../_images/vs_output_25.png" />
+  <img alt="" src="../../_images/vs_output_26.png" /></p>
+<p>在Unreal点击编译或创建C++类，会出现构建失败，可以按<font color=blue>上文VS构建UE项目失败的方法修复</font></p>
+<p>在VSCode的Run 和Debug，使用以下红框的可以debug UE项目，Generate Project Files是生成VSCode配置文件，一般不使用多次生成，<font color=blue>暂没找到在VSCode构建UE项目</font>，当在VSCode编写完成代码之后，在UE点击编译来重新构建项目</p>
+<p>  <img alt="" src="../../_images/vs_output_27.png" /></p>
+</section>
+<section id="vscodebug">
+<h3>2.3  修复.vscode配置文件的bug<a class="headerlink" href="#vscodebug" title="Link to this heading">#</a></h3>
+<p> 出现.vscode配置文件的bug的问题，详情可看官方论坛</p>
+<p>  <a class="reference external" href="https://forums.unrealengine.com/t/has-anyone-ever-got-vscode-working-with-ue4-including-intellisense/125077/16">Has anyone ever got VSCode working with UE4? (including intellisense)</a></p>
+<p>  <a class="reference external" href="https://stackoverflow.com/questions/70149309/the-way-to-fix-unreal-4-27-vscode-intelligence-bug">The way to fix unreal 4.27 vscode intelligence bug</a></p>
+<p>  修复bug的VSCode扩展，可自行按说明配置测试</p>
+<p>    <a class="reference external" href="https://github.com/boocs/ue4-intellisense-fixes">ue4-intellisense-fixes</a></p>
+<p> 根据以上方案，直接在项目新建py脚本来修复，在UE项目下新建Fix_UnrealToVSCode_Bug.py脚本文件，代码如下：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="k">def</span> <span class="nf">fix_cmd</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;command&#39;</span><span class="p">]</span>
+            <span class="n">m</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">Match</span><span class="p">]</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;(C:.*cl.exe) (@.*)&quot;</span><span class="p">,</span> <span class="n">cmd</span><span class="p">)</span>
+            <span class="n">m0</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\&quot;</span><span class="si">{</span><span class="n">m0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> </span><span class="si">{</span><span class="n">m0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">item</span><span class="p">[</span><span class="s1">&#39;command&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cmd</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="n">project_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+    <span class="n">project_name</span> <span class="o">=</span> <span class="n">project_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">project_name</span><span class="p">)</span>
+
+    <span class="n">fix_cmd</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/.vscode/compileCommands_Default.json&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">project_path</span><span class="p">))</span>
+    <span class="n">fix_cmd</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/.vscode/compileCommands_</span><span class="si">%s</span><span class="s2">.json&quot;</span> <span class="o">%</span>
+            <span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">project_name</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>代码指定之前安装的python3.7.7来执行即可
+  <img alt="" src="../../_images/vs_output_28.png" /></p>
+<p>修复正常之后如下，<font color=red>值得注意的是在UE或者VSCode重新生成.vscode配置，那么又要再执行py脚本修复一下，建议就是生成之后就不要多次重新生成配置文件</font>
+  <img alt="" src="../../_images/vs_output_29.png" /></p>
+</section>
+<section id="vscodeunrealpython">
+<h3>2.4 VSCode配置Unreal的python<a class="headerlink" href="#vscodeunrealpython" title="Link to this heading">#</a></h3>
+<p>  先在UE插件开启Python，然后再项目开启Developer Mode (all users)，然后重启ue
+  <img alt="" src="../../_images/vs_output_30.png" /></p>
+<p>  在UE项目的文件夹下Intermediate下PythonStub有unreal.py文件，后续的python脚本可以直接在这个文件夹创建
+  <img alt="" src="../../_images/vs_output_31.png" /></p>
+<p>UE使用python详细的官方文档</p>
+<p> <a class="reference external" href="https://docs.unrealengine.com/4.27/zh-CN/ProductionPipelines/ScriptingAndAutomation/Python/">使用Python脚本化运行编辑器</a></p>
+<p> <a class="reference external" href="https://docs.unrealengine.com/4.27/zh-CN/ProductionPipelines/ScriptingAndAutomation/Python/Autocomplete/">为编辑器Python脚本设置自动完成</a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./parts\unreals"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="basics/unreal_build.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Unreal编译和构建的基础认识</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../unitys/unity.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">unity</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">前文说明：</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ue4-27vs2019">1. UE4.27配置VS2019</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs2019">1.1 下载和安装VS2019</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unrealvs">1.2 安装UnrealVS扩展</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ue">1.3 测试UE项目</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ue4-27vscode">2. UE4.27配置VSCode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vscode">2.1 下载和安装VSCode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.2 测试UE项目</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vscodebug">2.3  修复.vscode配置文件的bug</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vscodeunrealpython">2.4 VSCode配置Unreal的python</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By yao
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>unreal</title>
+    <title>基础知识</title>
   
   
   
@@ -57,10 +57,10 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'parts/unreals/unreal';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'parts/unreals/basics';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="unity" href="../unitys/unity.html" />
+    <link rel="next" title="Unreal编译和构建的基础认识" href="basics/unreal_build.html" />
     <link rel="prev" title="远程到Maya进行Debug调试" href="../mayas/maya_debug.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -171,23 +171,25 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Maya</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../mayas/code.html">代码脚本</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../mayas/codes/M_Codes1_OpenMayaAPI.html">001-Maya API 概念整理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mayas/codes/M_Codes3_OpenMayaAPI.html">003-简单的命令插件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mayas/codes/M_Codes2_OpenMayaAPI.html">002-OpenMaya基础知识</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mayas/codes/M_Codes4_OpenMayaAPI.html">004-DG节点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mayas/codes/m_codes1_openMayaAPI.html">001-Maya API 概念整理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mayas/codes/m_codes3_openMayaAPI.html">003-简单的命令插件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mayas/codes/m_codes2_openMayaAPI.html">002-OpenMaya基础知识</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mayas/codes/m_codes4_openMayaAPI.html">004-DG节点</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../mayas/hair.html">毛发</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../mayas/hairs/M_hairs1_CreateXgen.html">Maya-xgen制作总结</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mayas/hairs/m_hairs1_createXgen.html">Maya-xgen制作总结</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mayas/maya_debug.html">远程到Maya进行Debug调试</a></li>
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unreal</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">unreal</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">基础知识</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="basics/unreal_build.html">Unreal编译和构建的基础认识</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ue_27_config_vs2019_and_vsc_windows.html">UE4.27配置Windows VS2019 &amp; VScode</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unity</span></p>
 <ul class="nav bd-sidenav">
@@ -263,7 +265,7 @@
       
       
       
-      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs/issues/new?title=Issue%20on%20page%20%2Fparts/unreals/unreal.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/GongShan-Liu/CGAndGameDocs/issues/new?title=Issue%20on%20page%20%2Fparts/unreals/basics.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -293,7 +295,7 @@
       
       
       
-      <li><a href="../../_sources/parts/unreals/unreal.md" target="_blank"
+      <li><a href="../../_sources/parts/unreals/basics.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -375,7 +377,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>unreal</h1>
+    <h1>基础知识</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -389,8 +391,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="unreal">
-<h1>unreal<a class="headerlink" href="#unreal" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>基础知识<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -433,11 +437,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../unitys/unity.html"
+       href="basics/unreal_build.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">unity</p>
+        <p class="prev-next-title">Unreal编译和构建的基础认识</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
