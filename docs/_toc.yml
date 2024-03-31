@@ -21,6 +21,7 @@ parts:
     - file: parts/unreals/basics
       sections:
       - file: parts/unreals/basics/unreal_build
+      - file: parts/unreals/basics/unreal_python
     - file: parts/unreals/ue_27_config_vs2019_and_vsc_windows
   - caption: Unity
     chapters:
