@@ -9,8 +9,8 @@ parts:
     - file: parts/mayas/code
       sections:
       - file: parts/mayas/codes/m_codes1_openMayaAPI
-      - file: parts/mayas/codes/m_codes3_openMayaAPI
       - file: parts/mayas/codes/m_codes2_openMayaAPI
+      - file: parts/mayas/codes/m_codes3_openMayaAPI
       - file: parts/mayas/codes/m_codes4_openMayaAPI
     - file: parts/mayas/hair
       sections:
