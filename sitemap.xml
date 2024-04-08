@@ -8,84 +8,79 @@
 
 
 <url>
-  <loc>https://gongshan-liu.github.io/CGAndGameDocs/</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
+  <loc>https://gongshan-liu.github.io/CGAndGameDocs/intro.html</loc>
+  <lastmod>2024-04-01T14:37:18+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://gongshan-liu.github.io/CGAndGameDocs/intro.html</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
+  <loc>https://gongshan-liu.github.io/CGAndGameDocs/parts/mayas/code.html</loc>
+  <lastmod>2024-04-01T14:37:18+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://gongshan-liu.github.io/CGAndGameDocs/parts/mayas/code.html</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
   <loc>https://gongshan-liu.github.io/CGAndGameDocs/parts/mayas/codes/m_codes1_openMayaAPI.html</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2024-04-01T14:37:18+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>https://gongshan-liu.github.io/CGAndGameDocs/parts/mayas/codes/m_codes2_openMayaAPI.html</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2024-04-01T14:37:18+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>https://gongshan-liu.github.io/CGAndGameDocs/parts/mayas/codes/m_codes3_openMayaAPI.html</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2024-04-01T14:37:18+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>https://gongshan-liu.github.io/CGAndGameDocs/parts/mayas/codes/m_codes4_openMayaAPI.html</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2024-04-01T14:37:18+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>https://gongshan-liu.github.io/CGAndGameDocs/parts/mayas/hair.html</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2024-04-01T14:37:18+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>https://gongshan-liu.github.io/CGAndGameDocs/parts/mayas/hairs/m_hairs1_createXgen.html</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2024-04-01T14:37:18+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>https://gongshan-liu.github.io/CGAndGameDocs/parts/mayas/maya_debug.html</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2024-04-01T14:37:18+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>https://gongshan-liu.github.io/CGAndGameDocs/parts/unreals/basics.html</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2024-04-01T14:37:18+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>https://gongshan-liu.github.io/CGAndGameDocs/parts/unreals/basics/unreal_build.html</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2024-04-01T14:37:18+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>https://gongshan-liu.github.io/CGAndGameDocs/parts/unreals/basics/unreal_python.html</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2024-04-01T14:37:18+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>https://gongshan-liu.github.io/CGAndGameDocs/parts/unreals/ue_27_config_vs2019_and_vsc_windows.html</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2024-04-01T14:37:18+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>https://gongshan-liu.github.io/CGAndGameDocs/parts/unitys/unity.html</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2024-04-01T14:37:18+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>https://gongshan-liu.github.io/CGAndGameDocs/index.html</loc>
-  <lastmod>2024-03-31T08:46:58+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2024-04-01T14:37:18+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 
 
